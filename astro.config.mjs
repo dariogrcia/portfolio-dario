@@ -18,5 +18,7 @@ export default defineConfig({
   },
   vite: {
     plugins: [tailwindcss()],
+    // Fonts and images must be files: the CSP does not allow data: URIs.
+    build: { assetsInlineLimit: 0 },
   },
 });
