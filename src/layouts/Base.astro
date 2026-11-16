@@ -11,9 +11,11 @@ interface Props {
   lang: Lang;
   alternatePath: string;
   ogImage?: string;
+  noindex?: boolean;
 }
 
-const { title, description, lang, alternatePath, ogImage } = Astro.props;
+const { title, description, lang, alternatePath, ogImage, noindex } =
+  Astro.props;
 const site = Astro.site ?? import.meta.env.SITE;
 if (!site) {
   throw new Error(
@@ -54,6 +56,7 @@ const sections = [
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="canonical" href={canonical} />
     <link rel="alternate" hreflang="en" href={englishUrl} />
     <link rel="alternate" hreflang="es" href={spanishUrl} />
