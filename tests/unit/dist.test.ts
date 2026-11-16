@@ -7,9 +7,12 @@ import { spanishPhonePattern } from '../helpers/privacy';
 const site = 'https://portfolio-dario.pages.dev';
 const dist = new URL('../../dist/', import.meta.url);
 // Missing output is a failure: run npm run build before npm run test:dist.
-const htmlFiles = readdirSync(dist, { recursive: true, encoding: 'utf8' })
+const allHtmlFiles = readdirSync(dist, { recursive: true, encoding: 'utf8' })
   .filter((path) => path.endsWith('.html'))
   .sort();
+// 404.html is served for unknown paths only: it is noindex and has no
+// language alternates, so it is checked separately from the indexable pages.
+const htmlFiles = allHtmlFiles.filter((path) => path !== '404.html');
 const expectedPaths = [
   '/',
   '/es/',
@@ -18,6 +21,13 @@ const expectedPaths = [
     `/es/proyectos/${slug}/`,
   ]),
 ];
+
+test('builds the 404 page and nothing beyond the sixteen published pages', () => {
+  expect(allHtmlFiles).toContain('404.html');
+  const notFound = readFileSync(new URL('404.html', dist), 'utf8');
+  expect(notFound).toContain('<meta name="robots" content="noindex">');
+  expect(notFound).not.toMatch(spanishPhonePattern);
+});
 
 test('builds exactly the sixteen published pages', () => {
   expect(

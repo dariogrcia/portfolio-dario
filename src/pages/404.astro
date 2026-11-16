@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+import { t } from '../i18n/utils';
+
+// Cloudflare Pages serves this for unknown paths with a real 404 status.
+// One page for both languages, since the path does not say which one applies.
+---
+
+<Base
+  title={t('en', 'notFoundTitle')}
+  description={t('en', 'notFoundBody')}
+  lang="en"
+  alternatePath="/es/"
+  noindex
+>
+  <section class="wrap grid gap-16 py-24 sm:py-32" aria-labelledby="not-found">
+    <div>
+      <p class="label text-accent">404</p>
+      <h1 id="not-found" class="mt-4 text-5xl">{t('en', 'notFoundTitle')}</h1>
+      <p class="mt-4 text-muted">{t('en', 'notFoundBody')}</p>
+      <a class="btn btn-primary mt-8" href="/">{t('en', 'backHome')}</a>
+    </div>
+    <div lang="es">
+      <h2 class="text-3xl">{t('es', 'notFoundTitle')}</h2>
+      <p class="mt-4 text-muted">{t('es', 'notFoundBody')}</p>
+      <a class="btn btn-secondary mt-8" href="/es/">{t('es', 'backHome')}</a>
+    </div>
+  </section>
+</Base>
