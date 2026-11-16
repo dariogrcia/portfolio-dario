@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, test } from 'vitest';
+import { spanishPhonePattern } from '../helpers/privacy';
 import {
   aiWorkflow,
   education,
@@ -201,7 +202,7 @@ describe('approved portfolio content', () => {
   test('does not expose telephone numbers or private contact fields', () => {
     const serialized = JSON.stringify(content);
     expect(serialized).not.toMatch(/tel:/i);
-    expect(serialized).not.toMatch(/\b[6789](?:[\s().-]*\d){8}\b/);
+    expect(serialized).not.toMatch(spanishPhonePattern);
     expect(serialized).not.toMatch(
       /"(?:phone|telephone|address|postalAddress)"\s*:/i,
     );

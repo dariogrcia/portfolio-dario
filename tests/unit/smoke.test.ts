@@ -10,5 +10,8 @@ test('renders the portfolio as static HTML', async () => {
 
   expect(html).toContain(`<title>${t('en', 'pageTitle')}</title>`);
   expect(html).toMatch(new RegExp(`<h1\\b[^>]*>\\s*${profile.name}\\s*</h1>`));
-  expect(html).not.toMatch(/<script\b/i);
+  // JSON-LD is inert structured data, not executable client JavaScript.
+  expect(html.match(/<script\b[^>]*>/gi)).toEqual([
+    '<script type="application/ld+json">',
+  ]);
 });

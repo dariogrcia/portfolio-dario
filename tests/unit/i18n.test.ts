@@ -109,7 +109,9 @@ describe('Base layout', () => {
       );
       expect(html).not.toContain('preview.example');
       expect(html).not.toContain('?source=cv');
-      expect(html).not.toMatch(/<script\b/i);
+      expect(html.match(/<script\b[^>]*>/gi)).toEqual([
+        '<script type="application/ld+json">',
+      ]);
     },
   );
 });
