@@ -9,6 +9,6 @@ test('renders the portfolio as static HTML', async () => {
   const html = await container.renderToString(Index);
 
   expect(html).toContain(`<title>${t('en', 'pageTitle')}</title>`);
-  expect(html).toMatch(new RegExp(`<h1\\b[^>]*>${profile.name}</h1>`));
+  expect(html).toMatch(new RegExp(`<h1\\b[^>]*>\\s*${profile.name}\\s*</h1>`));
   expect(html).not.toMatch(/<script\b/i);
 });

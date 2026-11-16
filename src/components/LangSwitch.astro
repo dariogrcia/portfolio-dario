@@ -11,8 +11,9 @@ const { lang, alternatePath } = Astro.props;
 const targetLang: Lang = lang === 'en' ? 'es' : 'en';
 ---
 
-<nav aria-label={t(lang, 'languageNavigation')}>
+<nav aria-label={t(lang, 'languageNavigation')} class="shrink-0">
   <a
+    class="block rounded-full border border-line px-3 py-1.5 font-mono text-xs font-medium text-ink no-underline hover:border-ink"
     href={alternatePath}
     lang={targetLang}
     hreflang={targetLang}

@@ -10,11 +10,43 @@ interface Props {
 const { lang } = Astro.props;
 ---
 
-<section id="contact" aria-labelledby="contact-heading">
-  <h2 id="contact-heading">{t(lang, 'contact')}</h2>
-  <ul>
-    <li><a href={`mailto:${profile.email}`}>{profile.email}</a></li>
-    <li><a href={profile.linkedin}>{t(lang, 'linkedin')}</a></li>
-    <li><a href={profile.github}>{t(lang, 'github')}</a></li>
-  </ul>
+<section
+  id="contact"
+  aria-labelledby="contact-heading"
+  class="section pb-24 sm:pb-32"
+>
+  <div class="wrap">
+    <h2 id="contact-heading" class="label text-accent">
+      {t(lang, 'contact')}
+    </h2>
+    <ul class="mt-6 grid gap-6">
+      <li>
+        <a
+          href={`mailto:${profile.email}`}
+          class="email font-serif text-[1.45rem] font-semibold break-all text-ink underline decoration-accent decoration-2 underline-offset-[0.2em] sm:text-4xl lg:text-5xl"
+          >{profile.email}</a
+        >
+      </li>
+      <li class="flex flex-wrap gap-3">
+        <a class="btn btn-secondary" href={profile.linkedin}
+          >{t(lang, 'linkedin')}</a
+        >
+        <a class="btn btn-secondary" href={profile.github}
+          >{t(lang, 'github')}</a
+        >
+      </li>
+    </ul>
+  </div>
 </section>
+
+<style>
+  @media (prefers-reduced-motion: no-preference) {
+    .email {
+      transition: text-decoration-color 160ms ease;
+    }
+  }
+
+  .email:hover {
+    text-decoration-color: var(--ink);
+  }
+</style>

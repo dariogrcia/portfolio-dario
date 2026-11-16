@@ -1,5 +1,6 @@
 ---
 import LangSwitch from '../components/LangSwitch.astro';
+import { profile } from '../data/contenido';
 import type { Lang } from '../i18n/ui';
 import { localizedPath, t } from '../i18n/utils';
 import '../styles/global.css';
@@ -61,21 +62,47 @@ const sections = [
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl.href} />
   </head>
-  <body>
-    <a href="#main-content">{t(lang, 'skipToContent')}</a>
-    <header>
-      <nav aria-label={t(lang, 'mainNavigation')}>
-        <ul>
-          {
-            sections.map(({ id, label }) => (
-              <li>
-                <a href={localizedPath(`/#${id}`, lang)}>{t(lang, label)}</a>
-              </li>
-            ))
-          }
-        </ul>
-      </nav>
-      <LangSwitch lang={lang} alternatePath={alternatePath} />
+  <body class="min-h-dvh">
+    <a
+      href="#main-content"
+      class="sr-only z-50 rounded-md bg-accent px-4 py-2 font-semibold text-on-accent focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+      >{t(lang, 'skipToContent')}</a
+    >
+    <header
+      class="sticky top-0 z-40 border-b border-line bg-bg/85 backdrop-blur-md"
+    >
+      <div class="wrap flex h-16 items-center gap-4">
+        <a
+          href={localizedPath('/', lang)}
+          class="flex shrink-0 items-center gap-2.5 no-underline"
+          aria-label={profile.name}
+        >
+          <span
+            class="grid size-9 place-items-center rounded-lg bg-panel font-serif text-base font-semibold text-on-panel"
+            aria-hidden="true">DG</span
+          >
+        </a>
+        <nav
+          aria-label={t(lang, 'mainNavigation')}
+          class="nav-scroll -mx-1 min-w-0 flex-1 overflow-x-auto"
+        >
+          <ul class="flex w-max gap-1 px-1 text-sm">
+            {
+              sections.map(({ id, label }) => (
+                <li>
+                  <a
+                    href={localizedPath(`/#${id}`, lang)}
+                    class="block rounded-md px-2.5 py-1.5 whitespace-nowrap text-muted no-underline hover:bg-surface-2 hover:text-ink"
+                  >
+                    {t(lang, label)}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </nav>
+        <LangSwitch lang={lang} alternatePath={alternatePath} />
+      </div>
     </header>
     <main id="main-content" tabindex="-1">
       <slot />

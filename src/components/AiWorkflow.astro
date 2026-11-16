@@ -10,7 +10,39 @@ interface Props {
 const { lang } = Astro.props;
 ---
 
-<section id="ai-workflow" aria-labelledby="ai-workflow-heading">
-  <h2 id="ai-workflow-heading">{t(lang, 'aiWorkflow')}</h2>
-  <p>{aiWorkflow[lang]}</p>
+<section id="ai-workflow" aria-labelledby="ai-workflow-heading" class="section">
+  <div class="wrap">
+    <div
+      class="panel relative overflow-hidden rounded-2xl bg-panel px-6 py-12 text-on-panel sm:px-12 sm:py-16"
+    >
+      <h2
+        id="ai-workflow-heading"
+        class="section-title relative max-w-2xl text-on-panel"
+      >
+        {t(lang, 'aiWorkflow')}
+      </h2>
+      <p
+        class="relative mt-6 max-w-3xl text-lg leading-relaxed text-on-panel-muted"
+      >
+        {aiWorkflow[lang]}
+      </p>
+    </div>
+  </div>
 </section>
+
+<style>
+  /* Decorative concentric rings in the top-right corner. */
+  .panel::after {
+    content: '';
+    position: absolute;
+    right: -6rem;
+    top: -6rem;
+    width: 22rem;
+    height: 22rem;
+    border-radius: 999px;
+    border: 1px dashed rgb(255 255 255 / 0.18);
+    box-shadow:
+      0 0 0 3rem rgb(255 255 255 / 0.03),
+      0 0 0 6rem rgb(255 255 255 / 0.02);
+  }
+</style>
