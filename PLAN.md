@@ -27,7 +27,7 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
   idioma que lleva a la página equivalente, no a la portada.
 - **D3 — Contenido:** fuente única `docs/contenido.md`; `src/data/contenido.ts`
   la refleja tipada. Un test comprueba que cada proyecto/experiencia tiene EN y
-  ES y que no aparece el teléfono en `dist/`.
+  ES y que no aparece ningún teléfono (patrón genérico español y `tel:`) en `dist/`.
 - **D4 — Proyectos v1 y su orden:** 1 IPSO, 2 Vertex Studio, 3 dracontreras.es,
   4 JM Asesores, 5 Clínica de psiquiatría (plantilla), 6 Asistente WhatsApp
   Nenúfar, 7 uPathWay (GMV). Estado visible en cada tarjeta: «En producción»,
@@ -166,7 +166,9 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
 - **Verificación:** `npm run verify` pasa; revisión visual a 390, 768 y 1440 px.
 
 ### Tarea 7 — Endurecido: accesibilidad, cabeceras y SEO técnico
-- **Estado:** en curso
+- **Estado:** hecha
+- **Implementación:** escrita; pendiente de instalar `@astrojs/sitemap`, generar
+  las OG y ejecutar la verificación completa con Claude.
 - **Modo:** síncrono
 - **Crítica:** no
 - **Contexto:** D8, D9, D10.
@@ -178,6 +180,11 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
   ningún teléfono en ningún HTML, cada página con canonical y hreflang.
 - **No hacer:** cambiar textos ni diseño salvo para arreglar contraste o foco.
 - **Verificación:** `npm run verify` pasa.
+
+- **Ejecución pendiente (Claude):** `npm install`, `npm run og` y
+  `npm run verify`, en ese orden. `verify` ejecuta `test:dist` después del build;
+  los tests unitarios normales no dependen de un `dist/` previo. Revisar las
+  imágenes `public/og/og-{en,es}.png` antes de marcar la tarea hecha.
 
 ### Tarea 8 — Despliegue en Cloudflare Pages
 - **Estado:** pendiente
@@ -200,3 +207,21 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
 - 2026-11-16 — Tarea 5 implementada (Codex): 14 casos EN/ES con campos opcionales (D11), enlaces equivalentes y regreso al ancla de proyectos; galería con `astro:assets` e `import.meta.glob`, sin exigir capturas existentes; diagramas SVG de IPSO y Nenúfar con title/desc y etiquetas bilingües en `src/i18n/ui.ts`, basados en el contenido aprobado. Script manual `npm run screenshots` (`node scripts/screenshots.ts`) para las cuatro webs públicas con `media: screenshots`, incluida la plantilla: escritorio 1440×900 y móvil 390×844. Sin capturas de uPathWay/Solera/GMV, sin dependencias nuevas ni commit. Lint, typecheck (solo hint previo de `eslint.config.js`), 73 tests unitarios y build de 16 páginas correctos. Playwright enumera 25 e2e (14 nuevos); no se ejecutaron ni se abrieron puertos. Claude debe ejecutar `npm run screenshots`, revisar las ocho imágenes en `src/assets/projects/<slug>/{desktop,mobile}.png` y ejecutar `npm run verify` con ellas antes de marcar la tarea hecha.
 - 2026-11-16 — Tarea 5 hecha (Codex; capturas de Claude). La URL de la plantilla de clínica está tras Cloudflare Access (login): se quita del contenido y sus capturas salen de `npx vite dev` en `~/peace-space-site`. Fallo visto en la plantilla: en móvil el botón «Reservar» de la cabecera se sale por la derecha. `verify` en verde: 73 unit + 25 e2e.
 - 2026-11-16 — Tarea 6 hecha (Claude, sin la skill frontend-design: no está instalada). Tokens en `global.css` con modo oscuro por `prefers-color-scheme`; fuentes autoalojadas (@fontsource: Inter, Source Serif 4, JetBrains Mono); `src/data/status.ts` para el color del estado. Playwright emula `reducedMotion: 'reduce'`: el scroll suave hacía inestable el e2e de anclas (1 de cada 3). `verify` en verde: 75 unit + 25 e2e.
+- 2026-11-16 — Tarea 7 implementada (Codex), pendiente de validación completa:
+  CSP estricta con CSS externo (`inlineStylesheets: 'never'`), cabeceras de
+  Cloudflare, robots, integración sitemap declarada en `package.json`, metadatos
+  OG y JSON-LD Person (datos inertes, sin JavaScript ejecutable). Generador manual
+  `node scripts/og.ts` / `npm run og`: Playwright con `setContent`, sin servidor,
+  sin red, fuentes locales y textos/colores de las fuentes del proyecto. Patrones
+  genéricos de teléfono con pruebas sintéticas; eliminada la comprobación con
+  dígitos concretos. Ocho e2e axe (cuatro plantillas en claro/oscuro), enumerados
+  pero no ejecutados; Playwright enumera 33 e2e en total. Lint pasa. Los comandos
+  oficiales de tipos, unitarios y build fallan al cargar `@astrojs/sitemap`, aún
+  no instalada; no se modifica el lockfile ni se intenta instalar sin red.
+  Diagnóstico adicional con configuración temporal sin sitemap (retirada al
+  terminar): tipos sin errores, con el hint previo de ESLint; 106 unitarios
+  pasan; build de 16 páginas correcto, sin `<style>` ni atributos `style=`.
+  Sobre ese build, `test:dist` pasa 66 comprobaciones y falla tres por el sitemap
+  y los dos PNG pendientes de generar. Claude debe instalar, generar/revisar OG
+  y ejecutar `npm run verify`. No se marca hecha; sin commit.
+- 2026-11-16 — Tarea 7 hecha (Codex). Claude instaló `@astrojs/sitemap`, generó las OG (`npm run og`) y corrigió la única violación de axe (el logo tenía un `aria-label` distinto de su texto visible). Los tests de privacidad usan un patrón genérico de teléfono, sin dígitos reales. CV: fecha de la carrera parcheada a 2018–2025. `verify` en verde: 106 unit + 69 dist + 33 e2e.

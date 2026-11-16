@@ -25,6 +25,17 @@ const alternate = new URL(alternatePath, site);
 const englishUrl = lang === 'en' ? canonical : alternate;
 const spanishUrl = lang === 'es' ? canonical : alternate;
 const imageUrl = new URL(ogImage ?? `/og/og-${lang}.png`, site);
+const person = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': new URL('/#person', site).href,
+  name: profile.name,
+  url: new URL('/', site).href,
+  jobTitle: profile.title[lang],
+  description: profile.headline[lang],
+  email: profile.email,
+  sameAs: [profile.linkedin, profile.github],
+}).replace(/</g, '\\u003c');
 const sections = [
   { id: 'hero', label: 'hero' },
   { id: 'experience', label: 'experience' },
@@ -52,6 +63,9 @@ const sections = [
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical.href} />
     <meta property="og:image" content={imageUrl.href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={profile.headline[lang]} />
     <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'es_ES'} />
     <meta
       property="og:locale:alternate"
@@ -61,6 +75,7 @@ const sections = [
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={imageUrl.href} />
+    <script is:inline type="application/ld+json" set:html={person} />
   </head>
   <body class="min-h-dvh">
     <a
@@ -75,12 +90,12 @@ const sections = [
         <a
           href={localizedPath('/', lang)}
           class="flex shrink-0 items-center gap-2.5 no-underline"
-          aria-label={profile.name}
         >
           <span
             class="grid size-9 place-items-center rounded-lg bg-panel font-serif text-base font-semibold text-on-panel"
             aria-hidden="true">DG</span
           >
+          <span class="sr-only">{profile.name}</span>
         </a>
         <nav
           aria-label={t(lang, 'mainNavigation')}
