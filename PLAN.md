@@ -1,6 +1,6 @@
 # PLAN.md
 
-> **Estado: aprobado por Darío el 2026-11-16.**
+> **Estado: v1 publicada el 2026-11-16 en https://portfolio-dario.pages.dev**
 
 ## Resumen
 Portfolio profesional de Darío Jesús García Aguilera, software engineer, para
@@ -187,7 +187,7 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
   imágenes `public/og/og-{en,es}.png` antes de marcar la tarea hecha.
 
 ### Tarea 8 — Despliegue en Cloudflare Pages
-- **Estado:** en curso
+- **Estado:** hecha
 - **Modo:** — (Claude + Darío)
 - **Crítica:** no
 - **Contexto:** D8. Darío conecta el repo a Cloudflare Pages desde el panel
@@ -227,3 +227,4 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
 - 2026-11-16 — Tarea 7 hecha (Codex). Claude instaló `@astrojs/sitemap`, generó las OG (`npm run og`) y corrigió la única violación de axe (el logo tenía un `aria-label` distinto de su texto visible). Los tests de privacidad usan un patrón genérico de teléfono, sin dígitos reales. CV: fecha de la carrera parcheada a 2018–2025. `verify` en verde: 106 unit + 69 dist + 33 e2e.
 - 2026-11-16 — Tarea 6b (petición de Darío, Claude): efectos de scroll en CSS (`animation-timeline`), solo con `@supports` y sin `prefers-reduced-motion`. Comprobado que todo acaba al 100 % de opacidad; el bloque de contacto usa `entry 0% entry 100%` porque la página termina antes de llegar a un rango `cover`. Carrera: 2018–2025.
 - 2026-11-16 — Historial limpiado con `git filter-repo` (quitados restos parciales del teléfono en PLAN.md y en un test antiguo). Repo de GitHub borrado y recreado para eliminar los objetos huérfanos. Copia previa en el scratchpad de la sesión.
+- 2026-11-16 — Tarea 8 hecha (Claude). Proyecto Pages `portfolio-dario` conectado a GitHub (NODE_VERSION=22, `npm run build`, `dist`); cada push a `main` redespliega. Añadidos 404 bilingüe noindex (sin ella, Pages servía la portada con 200), favicon, `assetsInlineLimit: 0` (Vite incrustaba fuentes como data:, bloqueadas por la CSP), `connect-src 'self'` (Lighthouse lee robots.txt desde la página) y sin reveal en el texto de los casos (quedaba semitransparente al cargar). Lighthouse en producción: 99-100 en las cuatro categorías, móvil y escritorio.
