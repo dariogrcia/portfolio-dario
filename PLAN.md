@@ -46,6 +46,10 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
 - **D9 — Seguridad:** `public/_headers` con CSP estricta (sin `unsafe-inline`
   en scripts; hash si hay script inline), `X-Content-Type-Options`,
   `Referrer-Policy`, `Permissions-Policy`.
+- **D11 — Textos ausentes (2026-11-16):** ningún campo de texto se inventa. Lo
+  que no está en `docs/contenido.md` en EN y ES es opcional en los tipos y la UI
+  no lo muestra. Ampliar los casos (rol, problema/solución) requiere que Darío
+  apruebe el texto en `docs/contenido.md` primero.
 - **D10 — Calidad mínima:** Playwright + axe sin violaciones serias/críticas en
   las 4 plantillas de página; Lighthouse ≥ 95 en Performance, Accessibility,
   Best Practices y SEO (medido a mano en la Tarea 8).
@@ -95,15 +99,22 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
   `/es/` tiene `lang="es"` y el selector enlaza la una con la otra.
 
 ### Tarea 3 — Capa de datos del contenido
-- **Estado:** en curso
+- **Estado:** hecha
 - **Modo:** síncrono
 - **Crítica:** no
 - **Contexto:** D3, D4, D5.
 - **Archivos:** crear `src/data/contenido.ts`, `src/data/types.ts`,
   `tests/unit/contenido.test.ts`.
 - **Contrato:** tipos `Localized<T> = { en: T; es: T }`, `Experience`,
-  `Project` (`slug`, `status`, `title`, `summary`, `problem`, `solution`,
-  `role`, `stack[]`, `highlights[]`, `url?`, `repo?`, `media`), `SkillGroup`,
+  `Project` (`slug`, `name: string` común a ambos idiomas — p. ej. «IPSO»,
+  «Vertex Studio», «JM Asesores» —, `tagline: Localized<string>` = el texto
+  tras «·» en el encabezado de `docs/contenido.md` (traducirlo al inglés NO está
+  permitido: si solo existe en ES, `tagline` es opcional y se omite),
+  `status: Localized<string>`, `summary: Localized<string>`,
+  `problem?`, `solution?`, `highlights?: Localized<string[]>`, `stack: string[]`,
+  `url?`, `repo?: 'private'`, `media: 'screenshots' | 'diagram' | 'none'`).
+  Sin campo `role` en la v1. Los campos opcionales se rellenan solo si el texto
+  existe en `docs/contenido.md` en los dos idiomas (D11). `SkillGroup`,
   `Education`, `Profile`. Exporta `profile`, `experience`, `projects` (en el
   orden de D4), `skills`, `education`, `aiWorkflow`. Los textos son copia literal
   de `docs/contenido.md`. Tests: todos los campos `Localized` tienen EN y ES no
@@ -181,3 +192,5 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
 - 2026-11-16 — Proyecto creado desde la plantilla del kit; PLAN.md en borrador.
 - 2026-11-16 — Tarea 1 hecha (Codex + Claude). Codex no tiene red: Claude instaló dependencias y Chromium. Ajustes de Claude: `overrides.vite` a ^6.4.6 (Astro usa Vite 6 y Vitest arrastraba Vite 7, rompía los tipos de `test`), `/// <reference types="vitest" />` y import JSON con `with { type: 'json' }` en el e2e (lo exige Node 26). `npm run verify` en verde con Node 26.8.2.
 - 2026-11-16 — Tarea 2 hecha (Codex). El sandbox de Codex no puede abrir puertos (`listen EPERM`): el e2e lo ejecuta Claude. `verify` en verde: 35 unit + 3 e2e. Título provisional `portfolio-dario` y OG pendiente de la Tarea 7.
+- 2026-11-16 — Tarea 3 hecha (Codex). Datos tipados con textos literales de `docs/contenido.md`, campos ausentes omitidos según D11 y 18 tests nuevos de contenido. Verificación: lint, typecheck, 53 tests unitarios y build correctos; typecheck conserva un aviso informativo existente de API obsoleta en `eslint.config.js`. Sin commit.
+- 2026-11-16 — Tarea 3 hecha (Codex). Primer intento parado con razón: el contrato pedía textos inexistentes; Claude lo corrigió (D11). `verify` en verde: 53 unit + 3 e2e.
