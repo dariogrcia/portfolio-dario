@@ -175,33 +175,33 @@ export const projects: Project[] = [
     name: 'Vertex Studio',
     status: { en: 'Live', es: 'En producción' },
     summary: {
-      en: 'Website for my own studio: subscription-based websites with maintenance included, plus a quote questionnaire.',
-      es: 'Web de mi estudio: webs por cuota mensual con mantenimiento incluido y un cuestionario de presupuesto.',
+      en: 'Website for my own studio, which leads with AI automation (assistants that answer customers at any hour and book appointments on their own) and offers subscription websites as a complementary service, plus a quote questionnaire.',
+      es: 'Web de mi estudio, que pone por delante la automatización con IA (asistentes que atienden a los clientes a cualquier hora y citas que se agendan solas) y ofrece las webs por cuota como servicio complementario, con un cuestionario de presupuesto.',
     },
     role: {
       en: 'Founder, designer and developer: business model, copy, design, build and deployment.',
       es: 'Fundador, diseñador y desarrollador: modelo de negocio, textos, diseño, desarrollo y despliegue.',
     },
     problem: {
-      en: 'My studio needed a site that explains a subscription model (website + maintenance for a monthly fee) clearly and turns visitors into qualified quote requests.',
-      es: 'Mi estudio necesitaba una web que explicara con claridad un modelo por cuota (web + mantenimiento al mes) y convirtiera visitas en peticiones de presupuesto cualificadas.',
+      en: 'My studio needed a site that presents two offers without mixing them up (AI automation as the main service, websites as a complement) and turns visitors into qualified quote requests.',
+      es: 'Mi estudio necesitaba una web que presentara dos ofertas sin mezclarlas (la automatización con IA como servicio principal y las webs como complemento) y convirtiera visitas en peticiones de presupuesto cualificadas.',
     },
     solution: {
-      en: 'A fast static Astro site with transparent plans and a quote questionnaire handled by a Cloudflare Pages Function that emails each request through Resend. Publishing is guarded: the deploy script refuses to go live if legal data is missing or tests fail, and changes are checked first on a non-indexed preview.',
-      es: 'Una web estática y rápida en Astro, con planes transparentes y un cuestionario de presupuesto gestionado por una Pages Function de Cloudflare que envía cada solicitud por email con Resend. La publicación está protegida: el script de despliegue se niega a publicar si faltan datos legales o fallan los tests, y los cambios se revisan antes en una vista previa sin indexar.',
+      en: 'A fast static Astro site whose hero shows the product at work: a CSS-only chat in which the assistant books a customer late at night. AI plans come before web plans, and the quote questionnaire, which offers AI automation first, is handled by a Cloudflare Pages Function that emails each request through Resend. Publishing is guarded: the deploy script refuses to go live if legal data is missing or tests fail, and changes are checked first on a non-indexed preview.',
+      es: 'Una web estática y rápida en Astro cuyo hero enseña el producto funcionando: un chat hecho solo con CSS en el que el asistente agenda una cita a un cliente de madrugada. Los planes de IA van antes que los de web, y el cuestionario de presupuesto, que ofrece primero la automatización, lo gestiona una Pages Function de Cloudflare que envía cada solicitud por email con Resend. La publicación está protegida: el script de despliegue se niega a publicar si faltan datos legales o fallan los tests, y los cambios se revisan antes en una vista previa sin indexar.',
     },
     highlights: {
       en: [
-        'Static Astro site with a serverless function for the quote form (email via Resend)',
+        'Repositioned from websites to AI automation, keeping “web design” in the SEO titles to protect existing rankings',
+        'Animated chat mock-up built only with CSS, with a static version for reduced motion',
         'Pre-deploy checks that block publishing without legal data or green tests',
         'Separate non-indexed preview environment',
-        'Retired the previous version behind a 503 + Retry-After maintenance page, so search engines read it as a temporary outage and rollback was a single deploy',
       ],
       es: [
-        'Astro estático con una función serverless para el cuestionario (email con Resend)',
+        'Reposicionada de webs a automatización con IA, manteniendo «diseño web» en los títulos SEO para no perder lo posicionado',
+        'Maqueta de chat animada solo con CSS, con versión estática para «reducir movimiento»',
         'Comprobaciones previas que impiden publicar sin datos legales o con tests en rojo',
         'Entorno de vista previa aparte y sin indexar',
-        'La versión anterior se retiró tras una página de mantenimiento 503 + Retry-After, para que Google lo leyera como caída temporal y volver atrás fuera un solo despliegue',
       ],
     },
     stack: [
