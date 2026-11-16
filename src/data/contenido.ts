@@ -131,13 +131,14 @@ export const projects: Project[] = [
   {
     slug: 'ipso',
     name: 'IPSO',
-    status: {
-      en: 'In development',
-      es: 'En desarrollo',
-    },
+    status: { en: 'In development', es: 'En desarrollo' },
     summary: {
       en: 'Voice AI assistant for self-service laundromats: customers scan a QR on the machine, explain the problem out loud and the agent fixes it or escalates.',
       es: 'Asistente de voz con IA para lavanderías de autoservicio: el cliente escanea un QR en la máquina, cuenta el problema hablando y el agente lo resuelve o lo escala.',
+    },
+    role: {
+      en: 'Product owner and lead developer: scope, architecture, data model and a 60+ task delivery plan; implementation delegated to Codex and reviewed by me against tests.',
+      es: 'Responsable de producto y desarrollador principal: alcance, arquitectura, modelo de datos y un plan de más de 60 tareas; la implementación la delego en Codex y la reviso yo contra los tests.',
     },
     problem: {
       en: 'When a machine fails there is nobody on site; customers lose money and owners find out late.',
@@ -172,24 +173,35 @@ export const projects: Project[] = [
   {
     slug: 'vertex-studio',
     name: 'Vertex Studio',
-    status: {
-      en: 'Live',
-      es: 'En producción',
-    },
+    status: { en: 'Live', es: 'En producción' },
     summary: {
       en: 'Website for my own studio: subscription-based websites with maintenance included, plus a quote questionnaire.',
       es: 'Web de mi estudio: webs por cuota mensual con mantenimiento incluido y un cuestionario de presupuesto.',
+    },
+    role: {
+      en: 'Founder, designer and developer: business model, copy, design, build and deployment.',
+      es: 'Fundador, diseñador y desarrollador: modelo de negocio, textos, diseño, desarrollo y despliegue.',
+    },
+    problem: {
+      en: 'My studio needed a site that explains a subscription model (website + maintenance for a monthly fee) clearly and turns visitors into qualified quote requests.',
+      es: 'Mi estudio necesitaba una web que explicara con claridad un modelo por cuota (web + mantenimiento al mes) y convirtiera visitas en peticiones de presupuesto cualificadas.',
+    },
+    solution: {
+      en: 'A fast static Astro site with transparent plans and a quote questionnaire handled by a Cloudflare Pages Function that emails each request through Resend. Publishing is guarded: the deploy script refuses to go live if legal data is missing or tests fail, and changes are checked first on a non-indexed preview.',
+      es: 'Una web estática y rápida en Astro, con planes transparentes y un cuestionario de presupuesto gestionado por una Pages Function de Cloudflare que envía cada solicitud por email con Resend. La publicación está protegida: el script de despliegue se niega a publicar si faltan datos legales o fallan los tests, y los cambios se revisan antes en una vista previa sin indexar.',
     },
     highlights: {
       en: [
         'Static Astro site with a serverless function for the quote form (email via Resend)',
         'Pre-deploy checks that block publishing without legal data or green tests',
         'Separate non-indexed preview environment',
+        'Retired the previous version behind a 503 + Retry-After maintenance page, so search engines read it as a temporary outage and rollback was a single deploy',
       ],
       es: [
         'Astro estático con una función serverless para el cuestionario (email con Resend)',
         'Comprobaciones previas que impiden publicar sin datos legales o con tests en rojo',
         'Entorno de vista previa aparte y sin indexar',
+        'La versión anterior se retiró tras una página de mantenimiento 503 + Retry-After, para que Google lo leyera como caída temporal y volver atrás fuera un solo despliegue',
       ],
     },
     stack: [
@@ -203,14 +215,23 @@ export const projects: Project[] = [
   },
   {
     slug: 'dracontreras',
-    name: 'Portfolio de la Dra. Isabel Contreras (psiquiatra)',
-    status: {
-      en: 'Live',
-      es: 'En producción',
-    },
+    name: 'Dra. Isabel Contreras',
+    status: { en: 'Live', es: 'En producción' },
     summary: {
       en: 'Professional portfolio for a psychiatrist: services, a detailed academic CV and contact.',
       es: 'Portfolio profesional para una psiquiatra: servicios, un CV académico detallado y contacto.',
+    },
+    role: {
+      en: 'Sole developer: planning, design system, development, domain migration and deployment.',
+      es: 'Desarrollador único: planificación, sistema de diseño, desarrollo, migración del dominio y despliegue.',
+    },
+    problem: {
+      en: 'A psychiatrist with a long academic record (publications, conference papers, training) needed a professional site that presents it clearly and builds trust with patients, without exposing private data.',
+      es: 'Una psiquiatra con una trayectoria académica extensa (publicaciones, comunicaciones en congresos, formación) necesitaba una web profesional que la presentara con claridad y diera confianza a los pacientes, sin exponer datos privados.',
+    },
+    solution: {
+      en: 'A static Astro 5 site with typed content from a single source file, a design system built for readability, and a structured CV section. Tests compare the published data with the source and fail if a phone number or address would be published; a CI check keeps the Content Security Policy strict. Delivered in ten planned tasks with a Claude Code + Codex workflow.',
+      es: 'Una web estática en Astro 5 con contenido tipado desde un único archivo, un sistema de diseño pensado para la lectura y un CV estructurado. Los tests comparan los datos publicados con la fuente y fallan si se fuera a publicar un teléfono o una dirección; un check mantiene estricta la política de seguridad de contenido. Entregada en diez tareas planificadas con el flujo Claude Code + Codex.',
     },
     highlights: {
       en: [
@@ -237,13 +258,22 @@ export const projects: Project[] = [
   {
     slug: 'jm-asesores',
     name: 'JM Asesores',
-    status: {
-      en: 'Live',
-      es: 'En producción',
-    },
+    status: { en: 'Live', es: 'En producción' },
     summary: {
       en: 'Corporate website for a tax, accounting and labour advisory firm, with service pages and a blog.',
       es: 'Web corporativa de una asesoría fiscal, contable y laboral, con páginas de servicios y blog.',
+    },
+    role: {
+      en: 'Developer and maintainer: took over a generated codebase, hardened it, handled SEO and moved hosting twice.',
+      es: 'Desarrollador y mantenimiento: me hice cargo de un código generado, lo endurecí, me ocupé del SEO y migré el hosting dos veces.',
+    },
+    problem: {
+      en: "The firm's site had been generated with an AI builder: most commits came from a bot, there was no documentation, HTTP and HTTPS both served the site, and Google was indexing it poorly.",
+      es: 'La web de la asesoría se había generado con un constructor de IA: casi todos los commits venían de un bot, no había documentación, el sitio respondía tanto por HTTP como por HTTPS y Google lo indexaba mal.',
+    },
+    solution: {
+      en: 'I brought the code under my own workflow, documented every decision in a project log, forced HTTPS with 301 redirects, added security headers (CSP with hashes, Referrer and Permissions policies) and ran a security audit with no findings. When court-ordered IP blocks on Cloudflare in Spain kept taking the site down on match days, I migrated hosting (first to Cloudflare Pages, then to Netlify) so they no longer affect it.',
+      es: 'Pasé el código a mi propio flujo de trabajo, documenté cada decisión en una bitácora, forcé HTTPS con redirecciones 301, añadí cabeceras de seguridad (CSP con hashes, Referrer y Permissions Policy) y pasé una auditoría de seguridad sin hallazgos. Cuando los bloqueos de IPs de Cloudflare ordenados por LaLiga tumbaban la web en días de partido, migré el hosting (primero a Cloudflare Pages y después a Netlify) para que dejaran de afectarla.',
     },
     highlights: {
       en: [
@@ -260,7 +290,7 @@ export const projects: Project[] = [
       'React 19',
       'TypeScript',
       'Tailwind CSS',
-      'Cloudflare Workers',
+      'Netlify',
     ],
     url: 'https://jmasesoresantequera.es',
     media: 'screenshots',
@@ -268,13 +298,22 @@ export const projects: Project[] = [
   {
     slug: 'clinica-psiquiatria',
     name: 'Clínica de psiquiatría',
-    status: {
-      en: 'Template',
-      es: 'Plantilla',
-    },
+    status: { en: 'Template', es: 'Plantilla' },
     summary: {
       en: 'Reusable website template for psychiatry and mental-health clinics, ready to adapt to a new client.',
       es: 'Plantilla web reutilizable para clínicas de psiquiatría y salud mental, lista para adaptar a un nuevo cliente.',
+    },
+    role: {
+      en: 'Designer and developer of the template and its back office.',
+      es: 'Diseñador y desarrollador de la plantilla y de su panel de gestión.',
+    },
+    problem: {
+      en: 'Small mental-health clinics need more than a brochure site: online booking, a contact inbox and a blog they can update themselves, while handling patient data with care.',
+      es: 'Las clínicas pequeñas de salud mental necesitan más que una web escaparate: reserva online, una bandeja de contactos y un blog que puedan actualizar ellas mismas, tratando con cuidado los datos de los pacientes.',
+    },
+    solution: {
+      en: 'A reusable React + TanStack Router template with an admin panel on Supabase (Postgres, Auth, Storage): blog editor, contact inbox and appointment requests with status tracking. Booking requires explicit GDPR consent, and each request emails the owner through Resend; if the email fails, the request is still saved.',
+      es: 'Una plantilla reutilizable en React + TanStack Router con panel de administración sobre Supabase (Postgres, Auth, Storage): editor del blog, bandeja de contactos y solicitudes de cita con seguimiento de estado. La reserva exige consentimiento RGPD explícito y cada solicitud avisa al dueño por email con Resend; si el email falla, la solicitud se guarda igualmente.',
     },
     highlights: {
       en: [
@@ -292,6 +331,8 @@ export const projects: Project[] = [
       'TanStack Router',
       'Tailwind CSS',
       'shadcn/ui',
+      'Supabase',
+      'Resend',
       'Cloudflare Workers',
     ],
     url: 'https://dariogrcia-peace-space-site.dariojesusgarcia6.workers.dev',
@@ -299,14 +340,23 @@ export const projects: Project[] = [
   },
   {
     slug: 'nenufar',
-    name: 'Asistente de WhatsApp para un centro de estética',
-    status: {
-      en: 'In planning',
-      es: 'En planificación',
-    },
+    name: 'Nenúfar',
+    status: { en: 'In planning', es: 'En planificación' },
     summary: {
       en: 'WhatsApp assistant that books appointments into Google Calendar, serves new and existing customers and sends promotions to opt-in lists.',
       es: 'Asistente de WhatsApp que agenda citas en Google Calendar, atiende a clientes nuevos y habituales y envía promociones a listas de difusión.',
+    },
+    role: {
+      en: 'Product and technical lead: scope, planning and architecture (in planning).',
+      es: 'Responsable de producto y técnico: alcance, planificación y arquitectura (en planificación).',
+    },
+    problem: {
+      en: 'A beauty centre handles bookings and customer questions by hand over WhatsApp, which takes staff time and makes promotions hard to manage.',
+      es: 'Un centro de estética gestiona a mano las citas y las dudas de sus clientes por WhatsApp, lo que quita tiempo al equipo y complica las promociones.',
+    },
+    solution: {
+      en: 'Planned: an assistant on the WhatsApp Business API that books into Google Calendar, recognises new and returning customers, lets two admins step in, and sends promotions only to customers who opted in, in line with GDPR and Meta template rules.',
+      es: 'Previsto: un asistente sobre la API de WhatsApp Business que agenda en Google Calendar, distingue clientes nuevos y habituales, permite intervenir a dos administradores y envía promociones solo a quien lo ha aceptado, cumpliendo el RGPD y las normas de plantillas de Meta.',
     },
     stack: ['WhatsApp Business API', 'Google Calendar API'],
     repo: 'private',
@@ -315,13 +365,14 @@ export const projects: Project[] = [
   {
     slug: 'upathway',
     name: 'uPathWay',
-    status: {
-      en: 'Company project',
-      es: 'Proyecto de empresa',
-    },
+    status: { en: 'Company project', es: 'Proyecto de empresa' },
     summary: {
       en: 'Drupal 10 platform for planning and managing robotic missions with real-time data. My contribution as a full-stack developer at GMV (no code or screenshots shown: proprietary).',
       es: 'Plataforma Drupal 10 para planificar y gestionar misiones robóticas con datos en tiempo real. Mi aportación como desarrollador full-stack en GMV (sin código ni capturas: es propiedad de la empresa).',
+    },
+    role: {
+      en: 'Full-stack developer in the robotics department team.',
+      es: 'Desarrollador full-stack en el equipo del departamento de robótica.',
     },
     stack: [
       'Drupal 10',

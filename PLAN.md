@@ -113,7 +113,7 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
   `status: Localized<string>`, `summary: Localized<string>`,
   `problem?`, `solution?`, `highlights?: Localized<string[]>`, `stack: string[]`,
   `url?`, `repo?: 'private'`, `media: 'screenshots' | 'diagram' | 'none'`).
-  Sin campo `role` en la v1. Los campos opcionales se rellenan solo si el texto
+  `role?: Localized<string>` (añadido el 2026-11-16 al aprobar los casos). Los campos opcionales se rellenan solo si el texto
   existe en `docs/contenido.md` en los dos idiomas (D11). `SkillGroup`,
   `Education`, `Profile`. Exporta `profile`, `experience`, `projects` (en el
   orden de D4), `skills`, `education`, `aiWorkflow`. Los textos son copia literal
@@ -123,7 +123,7 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
 - **Verificación:** `npm test` y `npm run typecheck` pasan.
 
 ### Tarea 4 — Secciones de la página principal
-- **Estado:** pendiente
+- **Estado:** en curso
 - **Modo:** background
 - **Crítica:** no
 - **Contexto:** D2, D3, D4. Estructura y semántica; el estilo fino es la Tarea 6.
@@ -132,7 +132,7 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
   `src/pages/es/index.astro`.
 - **Contrato:** cada sección es un `<section id>` con `aria-labelledby`. El hero
   tiene el único `<h1>`, botones «Descargar CV» y «Contactar». `ProjectCard`
-  muestra estado, título, resumen, stack y enlace al caso. Navegación por anclas
+  muestra estado, nombre, resumen, stack y enlace al caso. Navegación por anclas
   en la cabecera. Ambas portadas comparten componentes y solo cambian `lang`.
 - **No hacer:** páginas de caso; animaciones; tocar los datos.
 - **Verificación:** `npm run verify` pasa; e2e: las 7 secciones existen en `/` y
@@ -194,3 +194,4 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
 - 2026-11-16 — Tarea 2 hecha (Codex). El sandbox de Codex no puede abrir puertos (`listen EPERM`): el e2e lo ejecuta Claude. `verify` en verde: 35 unit + 3 e2e. Título provisional `portfolio-dario` y OG pendiente de la Tarea 7.
 - 2026-11-16 — Tarea 3 hecha (Codex). Datos tipados con textos literales de `docs/contenido.md`, campos ausentes omitidos según D11 y 18 tests nuevos de contenido. Verificación: lint, typecheck, 53 tests unitarios y build correctos; typecheck conserva un aviso informativo existente de API obsoleta en `eslint.config.js`. Sin commit.
 - 2026-11-16 — Tarea 3 hecha (Codex). Primer intento parado con razón: el contrato pedía textos inexistentes; Claude lo corrigió (D11). `verify` en verde: 53 unit + 3 e2e.
+- 2026-11-16 — Casos ampliados (rol, problema, solución) aprobados por Darío e integrados por Claude en `docs/contenido.md` y `src/data/contenido.ts`. Corregido: JM Asesores está en Netlify. CV sin teléfono copiado a `public/cv/`.
