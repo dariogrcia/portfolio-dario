@@ -156,7 +156,7 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
   responden 200 y el hreflang de cada una apunta a su equivalente.
 
 ### Tarea 6 — Diseño visual
-- **Estado:** en curso
+- **Estado:** hecha
 - **Modo:** — (Claude, skill frontend-design)
 - **Crítica:** no
 - **Contexto:** CLAUDE.md. Identidad visual, tipografía, color, modo oscuro,
@@ -166,7 +166,7 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
 - **Verificación:** `npm run verify` pasa; revisión visual a 390, 768 y 1440 px.
 
 ### Tarea 7 — Endurecido: accesibilidad, cabeceras y SEO técnico
-- **Estado:** pendiente
+- **Estado:** en curso
 - **Modo:** síncrono
 - **Crítica:** no
 - **Contexto:** D8, D9, D10.
@@ -199,3 +199,4 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
 - 2026-11-16 — Tarea 4 hecha (Codex). Claude cambió el `<title>` provisional por «Darío García Aguilera — Software Engineer / Ingeniero de software». `verify` en verde: 53 unit + 11 e2e.
 - 2026-11-16 — Tarea 5 implementada (Codex): 14 casos EN/ES con campos opcionales (D11), enlaces equivalentes y regreso al ancla de proyectos; galería con `astro:assets` e `import.meta.glob`, sin exigir capturas existentes; diagramas SVG de IPSO y Nenúfar con title/desc y etiquetas bilingües en `src/i18n/ui.ts`, basados en el contenido aprobado. Script manual `npm run screenshots` (`node scripts/screenshots.ts`) para las cuatro webs públicas con `media: screenshots`, incluida la plantilla: escritorio 1440×900 y móvil 390×844. Sin capturas de uPathWay/Solera/GMV, sin dependencias nuevas ni commit. Lint, typecheck (solo hint previo de `eslint.config.js`), 73 tests unitarios y build de 16 páginas correctos. Playwright enumera 25 e2e (14 nuevos); no se ejecutaron ni se abrieron puertos. Claude debe ejecutar `npm run screenshots`, revisar las ocho imágenes en `src/assets/projects/<slug>/{desktop,mobile}.png` y ejecutar `npm run verify` con ellas antes de marcar la tarea hecha.
 - 2026-11-16 — Tarea 5 hecha (Codex; capturas de Claude). La URL de la plantilla de clínica está tras Cloudflare Access (login): se quita del contenido y sus capturas salen de `npx vite dev` en `~/peace-space-site`. Fallo visto en la plantilla: en móvil el botón «Reservar» de la cabecera se sale por la derecha. `verify` en verde: 73 unit + 25 e2e.
+- 2026-11-16 — Tarea 6 hecha (Claude, sin la skill frontend-design: no está instalada). Tokens en `global.css` con modo oscuro por `prefers-color-scheme`; fuentes autoalojadas (@fontsource: Inter, Source Serif 4, JetBrains Mono); `src/data/status.ts` para el color del estado. Playwright emula `reducedMotion: 'reduce'`: el scroll suave hacía inestable el e2e de anclas (1 de cada 3). `verify` en verde: 75 unit + 25 e2e.

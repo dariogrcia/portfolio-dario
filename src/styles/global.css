@@ -1,1 +1,341 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/source-serif-4';
+@import '@fontsource-variable/jetbrains-mono';
+
+/* Design tokens. Light by default, dark follows the OS setting. */
+:root {
+  color-scheme: light dark;
+  --bg: #f6f5f1;
+  --surface: #ffffff;
+  --surface-2: #eeece6;
+  --ink: #131a2c;
+  --muted: #4b5468;
+  --line: #d9dbe2;
+  --accent: #3446c8;
+  --accent-soft: #e4e7fb;
+  --on-accent: #ffffff;
+  --panel: #151c32;
+  --on-panel: #e9ebf4;
+  --on-panel-muted: #b4bad0;
+
+  --live: #116b3f;
+  --live-bg: #dff3e7;
+  --dev: #8a4b00;
+  --dev-bg: #fbecd6;
+  --plan: #4b5468;
+  --plan-bg: #e8e9ee;
+  --template: #3446c8;
+  --template-bg: #e4e7fb;
+  --company: #5b3a8c;
+  --company-bg: #ece4f6;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d111d;
+    --surface: #141a2a;
+    --surface-2: #1a2134;
+    --ink: #e8eaf2;
+    --muted: #a5acc2;
+    --line: #283049;
+    --accent: #9aa6ff;
+    --accent-soft: #232b4d;
+    --on-accent: #0d111d;
+    --panel: #18203a;
+    --on-panel: #e8eaf2;
+    --on-panel-muted: #b0b7cf;
+
+    --live: #7fdba6;
+    --live-bg: #12301f;
+    --dev: #f5be74;
+    --dev-bg: #35260f;
+    --plan: #b6bccd;
+    --plan-bg: #232a3d;
+    --template: #a8b3ff;
+    --template-bg: #222a4d;
+    --company: #cdb3f3;
+    --company-bg: #2b2140;
+  }
+}
+
+@theme inline {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Source Serif 4 Variable', ui-serif, Georgia, serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-on-accent: var(--on-accent);
+  --color-panel: var(--panel);
+  --color-on-panel: var(--on-panel);
+  --color-on-panel-muted: var(--on-panel-muted);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  main:focus {
+    outline: none;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+}
+
+@layer components {
+  .wrap {
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 48rem) {
+    .wrap {
+      padding-inline: 2rem;
+    }
+  }
+
+  /* Small monospaced label used for statuses, dates and eyebrows. */
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .chips > li {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1.4;
+    padding: 0.25rem 0.55rem;
+    border: 1px solid var(--line);
+    border-radius: 0.375rem;
+    background: var(--surface-2);
+    color: var(--ink);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.875rem;
+    padding: 0.7rem 1.25rem;
+    border-radius: 0.625rem;
+    font-weight: 600;
+    font-size: 0.975rem;
+    text-decoration: none;
+    border: 1px solid transparent;
+  }
+
+  .btn-primary {
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+
+  .btn-secondary {
+    border-color: var(--line);
+    background: var(--surface);
+    color: var(--ink);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .btn,
+    .card {
+      transition:
+        transform 160ms ease,
+        box-shadow 160ms ease,
+        border-color 160ms ease,
+        background-color 160ms ease;
+    }
+
+    .btn:hover,
+    .card:hover {
+      transform: translateY(-2px);
+    }
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 8px 24px -10px var(--accent);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--ink);
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+  }
+
+  .card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 18px 40px -28px rgb(0 0 0 / 0.45);
+  }
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    color: var(--plan);
+    background: var(--plan-bg);
+  }
+
+  .status::before {
+    content: '';
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: currentColor;
+  }
+
+  .status-live {
+    color: var(--live);
+    background: var(--live-bg);
+  }
+
+  .status-dev {
+    color: var(--dev);
+    background: var(--dev-bg);
+  }
+
+  .status-template {
+    color: var(--template);
+    background: var(--template-bg);
+  }
+
+  .status-company {
+    color: var(--company);
+    background: var(--company-bg);
+  }
+
+  /* Editorial section: heading in a narrow column, content beside it. */
+  .section {
+    padding-block: 4.5rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .section-grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  @media (min-width: 64rem) {
+    .section {
+      padding-block: 6rem;
+    }
+
+    .section-grid {
+      grid-template-columns: 14rem 1fr;
+      gap: 4rem;
+    }
+
+    .section-grid > h2 {
+      position: sticky;
+      top: 6rem;
+      align-self: start;
+    }
+  }
+
+  .section-title {
+    font-size: 1.875rem;
+  }
+
+  .prose-list > li {
+    position: relative;
+    padding-left: 1.25rem;
+  }
+
+  .prose-list > li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.75em;
+    width: 0.5rem;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  /* Header navigation scrolls sideways on small screens, without JavaScript. */
+  .nav-scroll {
+    scrollbar-width: none;
+    mask-image: linear-gradient(to right, #000 85%, transparent);
+  }
+
+  .nav-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  @media (min-width: 64rem) {
+    .nav-scroll {
+      mask-image: none;
+    }
+
+    .nav-scroll > ul {
+      margin-left: auto;
+    }
+  }
+}

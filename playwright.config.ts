@@ -8,6 +8,9 @@ export default defineConfig({
   reporter: 'list',
   use: {
     baseURL: 'http://127.0.0.1:4321',
+    // Smooth scrolling makes anchor assertions racy; this also exercises the
+    // reduced-motion styles.
+    reducedMotion: 'reduce',
     trace: 'retain-on-failure',
   },
   projects: [
