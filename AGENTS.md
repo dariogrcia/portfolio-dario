@@ -63,5 +63,7 @@
 - Si algo del plan es imposible o contradictorio, detente y explícalo en vez
   de improvisar.
 - No hagas commit (el sandbox no permite escribir en `.git`); Claude lo hace.
+- El sandbox no tiene red: si necesitas una dependencia nueva, añádela a
+  `package.json` y dilo en tu informe; Claude ejecuta `npm install`.
 - Termina ejecutando el comando de "Verificación" de la tarea y reporta el
   resultado.
