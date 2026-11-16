@@ -441,7 +441,7 @@ export const education: Education[] = [
       en: 'University of Seville',
       es: 'Universidad de Sevilla',
     },
-    dates: '2018–2026',
+    dates: '2018–2025',
   },
 ];
 

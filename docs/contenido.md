@@ -169,6 +169,6 @@
 - AI: Claude Code, Codex, prompt engineering, AI-assisted development
 
 ## Formación e idiomas
-- Grado en Ingeniería Informática – Tecnologías Informáticas, Universidad de Sevilla, 2018–2026 / B.Sc. Computer Engineering – Information Technologies, University of Seville
+- Grado en Ingeniería Informática – Tecnologías Informáticas, Universidad de Sevilla, 2018–2025 / B.Sc. Computer Engineering – Information Technologies, University of Seville
 - Español: nativo / Spanish: native
 - Inglés: profesional completo (Cambridge B2), uso diario con clientes australianos / English: full professional proficiency (Cambridge B2), used daily with Australian clients
