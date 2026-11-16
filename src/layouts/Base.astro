@@ -1,7 +1,7 @@
 ---
 import LangSwitch from '../components/LangSwitch.astro';
 import type { Lang } from '../i18n/ui';
-import { t } from '../i18n/utils';
+import { localizedPath, t } from '../i18n/utils';
 import '../styles/global.css';
 
 interface Props {
@@ -24,6 +24,15 @@ const alternate = new URL(alternatePath, site);
 const englishUrl = lang === 'en' ? canonical : alternate;
 const spanishUrl = lang === 'es' ? canonical : alternate;
 const imageUrl = new URL(ogImage ?? `/og/og-${lang}.png`, site);
+const sections = [
+  { id: 'hero', label: 'hero' },
+  { id: 'experience', label: 'experience' },
+  { id: 'projects', label: 'projects' },
+  { id: 'ai-workflow', label: 'aiWorkflow' },
+  { id: 'skills', label: 'skills' },
+  { id: 'education', label: 'education' },
+  { id: 'contact', label: 'contact' },
+] as const;
 ---
 
 <!doctype html>
@@ -55,6 +64,17 @@ const imageUrl = new URL(ogImage ?? `/og/og-${lang}.png`, site);
   <body>
     <a href="#main-content">{t(lang, 'skipToContent')}</a>
     <header>
+      <nav aria-label={t(lang, 'mainNavigation')}>
+        <ul>
+          {
+            sections.map(({ id, label }) => (
+              <li>
+                <a href={localizedPath(`/#${id}`, lang)}>{t(lang, label)}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
       <LangSwitch lang={lang} alternatePath={alternatePath} />
     </header>
     <main id="main-content" tabindex="-1">

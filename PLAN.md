@@ -123,7 +123,7 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
 - **Verificación:** `npm test` y `npm run typecheck` pasan.
 
 ### Tarea 4 — Secciones de la página principal
-- **Estado:** en curso
+- **Estado:** hecha
 - **Modo:** background
 - **Crítica:** no
 - **Contexto:** D2, D3, D4. Estructura y semántica; el estilo fino es la Tarea 6.
@@ -139,7 +139,7 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
   en `/es/`, hay 7 tarjetas de proyecto y el enlace del CV devuelve 200.
 
 ### Tarea 5 — Páginas de caso de proyecto y capturas
-- **Estado:** pendiente
+- **Estado:** en curso
 - **Modo:** background
 - **Crítica:** no
 - **Contexto:** D2, D5, D6.
@@ -195,3 +195,5 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
 - 2026-11-16 — Tarea 3 hecha (Codex). Datos tipados con textos literales de `docs/contenido.md`, campos ausentes omitidos según D11 y 18 tests nuevos de contenido. Verificación: lint, typecheck, 53 tests unitarios y build correctos; typecheck conserva un aviso informativo existente de API obsoleta en `eslint.config.js`. Sin commit.
 - 2026-11-16 — Tarea 3 hecha (Codex). Primer intento parado con razón: el contrato pedía textos inexistentes; Claude lo corrigió (D11). `verify` en verde: 53 unit + 3 e2e.
 - 2026-11-16 — Casos ampliados (rol, problema, solución) aprobados por Darío e integrados por Claude en `docs/contenido.md` y `src/data/contenido.ts`. Corregido: JM Asesores está en Netlify. CV sin teléfono copiado a `public/cv/`.
+- 2026-11-16 — Tarea 4 implementada (Codex): siete secciones compartidas EN/ES, tarjetas de proyecto, navegación por anclas y descarga del CV. Etiquetas de interfaz en `src/i18n/ui.ts`; datos sin cambios. Actualizados los smoke tests del placeholder y añadidos ocho e2e (secciones/anclas, tarjetas, contenido/contacto y CV en ambos idiomas). Lint, typecheck, 53 unitarios y build correctos; persiste el hint previo de API obsoleta en `eslint.config.js`. Playwright enumera 11 tests; ejecución pendiente de Claude, sin abrir puertos. Sin commit.
+- 2026-11-16 — Tarea 4 hecha (Codex). Claude cambió el `<title>` provisional por «Darío García Aguilera — Software Engineer / Ingeniero de software». `verify` en verde: 53 unit + 11 e2e.

@@ -1,0 +1,31 @@
+---
+import type { Project } from '../data/types';
+import type { Lang } from '../i18n/ui';
+import { localizedPath, t } from '../i18n/utils';
+
+interface Props {
+  project: Project;
+  lang: Lang;
+}
+
+const { project, lang } = Astro.props;
+const headingId = `project-${project.slug}-heading`;
+const linkId = `project-${project.slug}-link`;
+---
+
+<article aria-labelledby={headingId}>
+  <p>{project.status[lang]}</p>
+  <h3 id={headingId}>{project.name}</h3>
+  {project.tagline && <p>{project.tagline[lang]}</p>}
+  <p>{project.summary[lang]}</p>
+  <ul aria-label={t(lang, 'technologyStack')}>
+    {project.stack.map((technology) => <li>{technology}</li>)}
+  </ul>
+  <a
+    id={linkId}
+    href={localizedPath(`/projects/${project.slug}/`, lang)}
+    aria-labelledby={`${linkId} ${headingId}`}
+  >
+    {t(lang, 'viewCase')}
+  </a>
+</article>

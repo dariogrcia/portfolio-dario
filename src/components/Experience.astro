@@ -1,0 +1,42 @@
+---
+import { experience } from '../data/contenido';
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<section id="experience" aria-labelledby="experience-heading">
+  <h2 id="experience-heading">{t(lang, 'experience')}</h2>
+  <ol>
+    {
+      experience.map((entry) => (
+        <li>
+          <article>
+            <h3>{entry.company}</h3>
+            <p>{entry.title}</p>
+            <p>{entry.dates[lang]}</p>
+            {entry.location && <p>{entry.location[lang]}</p>}
+            <ul>
+              {entry.description[lang].map((item) => (
+                <li>{item}</li>
+              ))}
+            </ul>
+            {entry.stack && (
+              <ul aria-label={t(lang, 'technologyStack')}>
+                {entry.stack.map((technology) => (
+                  <li>{technology}</li>
+                ))}
+              </ul>
+            )}
+            {entry.url && <a href={entry.url}>{entry.company}</a>}
+          </article>
+        </li>
+      ))
+    }
+  </ol>
+</section>

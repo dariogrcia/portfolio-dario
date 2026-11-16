@@ -1,0 +1,20 @@
+---
+import { profile } from '../data/contenido';
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<section id="contact" aria-labelledby="contact-heading">
+  <h2 id="contact-heading">{t(lang, 'contact')}</h2>
+  <ul>
+    <li><a href={`mailto:${profile.email}`}>{profile.email}</a></li>
+    <li><a href={profile.linkedin}>{t(lang, 'linkedin')}</a></li>
+    <li><a href={profile.github}>{t(lang, 'github')}</a></li>
+  </ul>
+</section>

@@ -1,0 +1,16 @@
+---
+import { aiWorkflow } from '../data/contenido';
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+---
+
+<section id="ai-workflow" aria-labelledby="ai-workflow-heading">
+  <h2 id="ai-workflow-heading">{t(lang, 'aiWorkflow')}</h2>
+  <p>{aiWorkflow[lang]}</p>
+</section>
