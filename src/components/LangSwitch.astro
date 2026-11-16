@@ -1,0 +1,23 @@
+---
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/utils';
+
+interface Props {
+  lang: Lang;
+  alternatePath: string;
+}
+
+const { lang, alternatePath } = Astro.props;
+const targetLang: Lang = lang === 'en' ? 'es' : 'en';
+---
+
+<nav aria-label={t(lang, 'languageNavigation')}>
+  <a
+    href={alternatePath}
+    lang={targetLang}
+    hreflang={targetLang}
+    rel="alternate"
+  >
+    {t(lang, 'switchLanguage')}
+  </a>
+</nav>
