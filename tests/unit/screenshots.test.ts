@@ -1,14 +1,23 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 
 const mocks = vi.hoisted(() => {
+  const element = { boundingBox: vi.fn(), scrollIntoViewIfNeeded: vi.fn() };
   const page = {
     goto: vi.fn(),
     evaluate: vi.fn(),
     screenshot: vi.fn(),
+    locator: vi.fn(),
   };
   const context = { newPage: vi.fn(), close: vi.fn() };
   const browser = { newContext: vi.fn(), close: vi.fn() };
-  return { page, context, browser, launch: vi.fn(), mkdir: vi.fn() };
+  return {
+    element,
+    page,
+    context,
+    browser,
+    launch: vi.fn(),
+    mkdir: vi.fn(),
+  };
 });
 vi.mock('@playwright/test', () => ({ chromium: { launch: mocks.launch } }));
 vi.mock('node:fs/promises', () => ({ mkdir: mocks.mkdir }));
@@ -26,6 +35,13 @@ describe('Manual screenshots', () => {
     mocks.browser.newContext.mockResolvedValue(mocks.context);
     mocks.context.newPage.mockResolvedValue(mocks.page);
     mocks.page.goto.mockResolvedValue({ ok: () => true, status: () => 200 });
+    mocks.page.locator.mockReturnValue(mocks.element);
+    mocks.element.boundingBox.mockResolvedValue({
+      x: 100,
+      y: 700,
+      width: 900,
+      height: 400,
+    });
   });
 
   afterEach(() => vi.restoreAllMocks());
@@ -44,8 +60,18 @@ describe('Manual screenshots', () => {
   test('writes desktop and mobile PNGs at the required dimensions and closes resources', async () => {
     await captureScreenshots();
     expect(mocks.mkdir).toHaveBeenCalledTimes(3);
-    expect(mocks.page.screenshot).toHaveBeenCalledTimes(6);
-    expect(mocks.context.close).toHaveBeenCalledTimes(6);
+    expect(mocks.page.screenshot).toHaveBeenCalledTimes(7);
+    // Six viewport captures plus the Vertex chat close-up.
+    expect(mocks.context.close).toHaveBeenCalledTimes(7);
+    expect(mocks.page.locator).toHaveBeenCalledWith('.maqueta');
+    expect(mocks.page.screenshot).toHaveBeenLastCalledWith(
+      expect.objectContaining({
+        path: expect.stringContaining(
+          '/src/assets/projects/vertex-studio/detail.png',
+        ),
+        clip: { x: 76, y: 676, width: 948, height: 448 },
+      }),
+    );
     expect(mocks.browser.close).toHaveBeenCalledOnce();
     for (const [index, target] of screenshotTargets.entries()) {
       for (const [offset, name, width, height] of [

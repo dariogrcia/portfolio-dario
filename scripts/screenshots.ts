@@ -12,6 +12,12 @@ export const screenshotTargets = projects.flatMap((project) =>
     : [],
 );
 
+// Close-ups of one element, saved as detail.png next to the other captures.
+// Vertex: the CSS-only chat mock-up under the hero.
+export const detailTargets = [
+  { slug: 'vertex-studio', selector: '.maqueta' },
+] as const;
+
 export const viewports = [
   { name: 'desktop', width: 1440, height: 900 },
   { name: 'mobile', width: 390, height: 844 },
@@ -69,6 +75,56 @@ export async function captureScreenshots(): Promise<void> {
         } finally {
           await context.close();
         }
+      }
+    }
+    for (const { slug, selector } of detailTargets) {
+      const target = screenshotTargets.find((entry) => entry.slug === slug);
+      if (!target) continue;
+      const context = await browser.newContext({
+        viewport: { width: 1440, height: 900 },
+        deviceScaleFactor: 2,
+        colorScheme: 'light',
+        reducedMotion: 'reduce',
+        locale: 'es-ES',
+      });
+      try {
+        const page = await context.newPage();
+        const response = await page.goto(target.url, {
+          waitUntil: 'load',
+          timeout: 60_000,
+        });
+        if (!response?.ok()) {
+          throw new Error(
+            `Cannot capture ${target.url}: HTTP ${response?.status()}`,
+          );
+        }
+        const path = fileURLToPath(
+          new URL(`../src/assets/projects/${slug}/detail.png`, import.meta.url),
+        );
+        // The mock-up is tilted in 3D, so a tight element capture clips its
+        // corners: capture its box plus a margin of page background instead.
+        // fullPage would resize the viewport and move the hero (it is sized in
+        // vh units), so bring the element into view and clip the viewport.
+        const element = page.locator(selector);
+        await element.scrollIntoViewIfNeeded();
+        const box = await element.boundingBox();
+        if (!box) throw new Error(`Cannot find ${selector} on ${target.url}`);
+        const margin = 24;
+        await page.screenshot({
+          path,
+          animations: 'disabled',
+          caret: 'hide',
+          timeout: 30_000,
+          clip: {
+            x: Math.max(0, box.x - margin),
+            y: Math.max(0, box.y - margin),
+            width: box.width + margin * 2,
+            height: box.height + margin * 2,
+          },
+        });
+        console.log(`Saved ${slug}/detail.png (${selector})`);
+      } finally {
+        await context.close();
       }
     }
   } finally {

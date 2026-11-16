@@ -94,7 +94,7 @@ for (const lang of ['en', 'es'] as const) {
         await expect(svg).toHaveAccessibleDescription(diagram.description);
         await expect(article.locator('img')).toHaveCount(0);
       } else if (project.media === 'screenshots') {
-        const available = (['desktop', 'mobile'] as const).filter((viewport) =>
+        const available = (['desktop', 'mobile', 'detail'] as const).filter((viewport) =>
           existsSync(
             new URL(
               `../../src/assets/projects/${project.slug}/${viewport}.png`,

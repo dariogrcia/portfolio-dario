@@ -15,15 +15,17 @@ interface Props {
 const { project, lang } = Astro.props;
 // An empty glob is valid until the manual screenshot script has been run.
 const images = import.meta.glob<{ default: ImageMetadata }>(
-  '../assets/projects/*/{desktop,mobile}.png',
+  '../assets/projects/*/{desktop,mobile,detail}.png',
   { eager: true },
 );
-const screenshots = (['desktop', 'mobile'] as const).flatMap((viewport) => {
-  const image = images[`../assets/projects/${project.slug}/${viewport}.png`];
-  return project.media === 'screenshots' && image
-    ? [{ viewport, image: image.default }]
-    : [];
-});
+const screenshots = (['desktop', 'mobile', 'detail'] as const).flatMap(
+  (viewport) => {
+    const image = images[`../assets/projects/${project.slug}/${viewport}.png`];
+    return project.media === 'screenshots' && image
+      ? [{ viewport, image: image.default }]
+      : [];
+  },
+);
 ---
 
 <article aria-labelledby="project-heading" class="wrap pt-10 pb-24 sm:pt-14">
@@ -171,6 +173,12 @@ const screenshots = (['desktop', 'mobile'] as const).flatMap((viewport) => {
     border-radius: 0.875rem;
     background: var(--surface);
     box-shadow: 0 24px 50px -32px rgb(0 0 0 / 0.5);
+  }
+
+  /* Optional close-up of one part of the site, full width under the pair. */
+  .detail {
+    grid-column: 1 / -1;
+    max-width: 52rem;
   }
 
   .mobile .frame {
