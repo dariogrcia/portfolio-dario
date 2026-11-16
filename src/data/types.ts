@@ -28,6 +28,7 @@ export interface Project {
   tagline?: Localized<string>;
   status: Localized<string>;
   summary: Localized<string>;
+  role?: Localized<string>;
   problem?: Localized<string>;
   solution?: Localized<string>;
   highlights?: Localized<string[]>;

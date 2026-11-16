@@ -90,7 +90,6 @@ describe('approved portfolio content', () => {
       expect(section).toBeDefined();
       const lines = section!.split('\n');
       expect(project.name).toBe(lines[0]?.split(' · ')[0]);
-      expect(project).not.toHaveProperty('role');
       // The current source has no bilingual project taglines.
       expect(project).not.toHaveProperty('tagline');
       expect(lines).toContain(
@@ -103,6 +102,7 @@ describe('approved portfolio content', () => {
           `- Resumen ${lang.toUpperCase()}: ${project.summary[lang]}`,
         );
         for (const [key, label] of [
+          ['role', 'Rol'],
           ['problem', 'Problema'],
           ['solution', 'Solución'],
           ['highlights', 'Highlights'],
