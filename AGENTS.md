@@ -65,5 +65,8 @@
 - No hagas commit (el sandbox no permite escribir en `.git`); Claude lo hace.
 - El sandbox no tiene red: si necesitas una dependencia nueva, añádela a
   `package.json` y dilo en tu informe; Claude ejecuta `npm install`.
+- El sandbox tampoco puede abrir puertos, así que `npm run test:e2e` fallará con
+  `listen EPERM`. Ejecuta `npm run lint && npm run typecheck && npm test && npm run build`
+  y deja el e2e para Claude. No lo marques como bloqueo.
 - Termina ejecutando el comando de "Verificación" de la tarea y reporta el
   resultado.

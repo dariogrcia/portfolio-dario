@@ -1,0 +1,64 @@
+---
+import LangSwitch from '../components/LangSwitch.astro';
+import type { Lang } from '../i18n/ui';
+import { t } from '../i18n/utils';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Lang;
+  alternatePath: string;
+  ogImage?: string;
+}
+
+const { title, description, lang, alternatePath, ogImage } = Astro.props;
+const site = Astro.site ?? import.meta.env.SITE;
+if (!site) {
+  throw new Error(
+    'Configure site in astro.config.mjs to generate absolute SEO URLs.',
+  );
+}
+const canonical = new URL(Astro.url.pathname, site);
+const alternate = new URL(alternatePath, site);
+const englishUrl = lang === 'en' ? canonical : alternate;
+const spanishUrl = lang === 'es' ? canonical : alternate;
+const imageUrl = new URL(ogImage ?? `/og/og-${lang}.png`, site);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={englishUrl} />
+    <link rel="alternate" hreflang="es" href={spanishUrl} />
+    <link rel="alternate" hreflang="x-default" href={englishUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical.href} />
+    <meta property="og:image" content={imageUrl.href} />
+    <meta property="og:locale" content={lang === 'en' ? 'en_GB' : 'es_ES'} />
+    <meta
+      property="og:locale:alternate"
+      content={lang === 'en' ? 'es_ES' : 'en_GB'}
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl.href} />
+  </head>
+  <body>
+    <a href="#main-content">{t(lang, 'skipToContent')}</a>
+    <header>
+      <LangSwitch lang={lang} alternatePath={alternatePath} />
+    </header>
+    <main id="main-content" tabindex="-1">
+      <slot />
+    </main>
+  </body>
+</html>

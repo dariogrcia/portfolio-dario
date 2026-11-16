@@ -77,7 +77,7 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
 - **Verificación:** `npm run verify` pasa.
 
 ### Tarea 2 — i18n, layout base y SEO
-- **Estado:** pendiente
+- **Estado:** hecha
 - **Modo:** síncrono
 - **Crítica:** no
 - **Contexto:** D2, D8.
@@ -95,7 +95,7 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
   `/es/` tiene `lang="es"` y el selector enlaza la una con la otra.
 
 ### Tarea 3 — Capa de datos del contenido
-- **Estado:** pendiente
+- **Estado:** en curso
 - **Modo:** síncrono
 - **Crítica:** no
 - **Contexto:** D3, D4, D5.
@@ -180,3 +180,4 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
 ## Registro
 - 2026-11-16 — Proyecto creado desde la plantilla del kit; PLAN.md en borrador.
 - 2026-11-16 — Tarea 1 hecha (Codex + Claude). Codex no tiene red: Claude instaló dependencias y Chromium. Ajustes de Claude: `overrides.vite` a ^6.4.6 (Astro usa Vite 6 y Vitest arrastraba Vite 7, rompía los tipos de `test`), `/// <reference types="vitest" />` y import JSON con `with { type: 'json' }` en el e2e (lo exige Node 26). `npm run verify` en verde con Node 26.8.2.
+- 2026-11-16 — Tarea 2 hecha (Codex). El sandbox de Codex no puede abrir puertos (`listen EPERM`): el e2e lo ejecuta Claude. `verify` en verde: 35 unit + 3 e2e. Título provisional `portfolio-dario` y OG pendiente de la Tarea 7.

@@ -1,0 +1,15 @@
+---
+import Base from '../../layouts/Base.astro';
+import { localizedPath, t } from '../../i18n/utils';
+
+const lang = 'es';
+---
+
+<Base
+  title={t(lang, 'pageTitle')}
+  description={t(lang, 'pageDescription')}
+  lang={lang}
+  alternatePath={localizedPath(Astro.url.pathname, 'en')}
+>
+  <h1>{t(lang, 'pageTitle')}</h1>
+</Base>
