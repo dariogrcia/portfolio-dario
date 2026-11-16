@@ -1,7 +1,6 @@
 # Contenido del portfolio — fuente de verdad
 
-> Borrador 2026-11-16, sacado del CV y de los repos. **Darío lo revisa (P2).**
-> Lo marcado con `[REVISAR]` necesita su confirmación.
+> Aprobado por Darío el 2026-11-16.
 > Regla: nunca teléfono ni dirección. Email y LinkedIn sí.
 
 ## Perfil
@@ -65,7 +64,7 @@
 
 ### ipso — IPSO · Asistente de voz con IA para lavanderías
 - Estado: En desarrollo / In development
-- Stack: Next.js, TypeScript, Supabase (Postgres + RLS), Vercel, Vitest `[REVISAR: proveedor de voz/LLM que quieras nombrar]`
+- Stack: Next.js, TypeScript, Supabase (Postgres + RLS), Vercel, Vitest
 - Repo: privado
 - Resumen EN: Voice AI assistant for self-service laundromats: customers scan a QR on the machine, explain the problem out loud and the agent fixes it or escalates.
 - Resumen ES: Asistente de voz con IA para lavanderías de autoservicio: el cliente escanea un QR en la máquina, cuenta el problema hablando y el agente lo resuelve o lo escala.
@@ -97,7 +96,7 @@
 ### jm-asesores — JM Asesores · Asesoría en Antequera
 - Estado: En producción / Live
 - URL: https://jmasesoresantequera.es
-- Stack: TanStack Start, React 19, TypeScript, Tailwind CSS, Cloudflare Workers `[REVISAR: hosting actual]`
+- Stack: TanStack Start, React 19, TypeScript, Tailwind CSS, Cloudflare Workers
 - Resumen EN: Corporate website for a tax, accounting and labour advisory firm, with service pages and a blog.
 - Resumen ES: Web corporativa de una asesoría fiscal, contable y laboral, con páginas de servicios y blog.
 - Highlights EN: Blog with articles on tax and accounting · Local technical SEO work and indexing fixes
@@ -105,16 +104,16 @@
 
 ### clinica-psiquiatria — Clínica de psiquiatría · Plantilla
 - Estado: Plantilla / Template
-- URL: https://dariogrcia-peace-space-site.dariojesusgarcia6.workers.dev `[REVISAR: ¿se enseña esta URL?]`
+- URL: https://dariogrcia-peace-space-site.dariojesusgarcia6.workers.dev
 - Stack: React, TypeScript, TanStack Router, Tailwind CSS, shadcn/ui, Cloudflare Workers
 - Resumen EN: Reusable website template for psychiatry and mental-health clinics, ready to adapt to a new client.
 - Resumen ES: Plantilla web reutilizable para clínicas de psiquiatría y salud mental, lista para adaptar a un nuevo cliente.
 - Highlights EN: Generic, client-agnostic content and branding · Designed to be customised quickly for real clinics
 - Highlights ES: Contenido e imagen genéricos, sin cliente concreto · Pensada para adaptarse rápido a clínicas reales
 
-### nenufar — Asistente de WhatsApp para un centro de estética `[REVISAR: tipo de negocio]`
+### nenufar — Asistente de WhatsApp para un centro de estética
 - Estado: En planificación / In planning
-- Stack: WhatsApp Business API, Google Calendar API `[REVISAR]`
+- Stack: WhatsApp Business API, Google Calendar API
 - Repo: privado
 - Resumen EN: WhatsApp assistant that books appointments into Google Calendar, serves new and existing customers and sends promotions to opt-in lists.
 - Resumen ES: Asistente de WhatsApp que agenda citas en Google Calendar, atiende a clientes nuevos y habituales y envía promociones a listas de difusión.

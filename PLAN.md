@@ -1,6 +1,6 @@
 # PLAN.md
 
-> **Estado: borrador, pendiente de aprobación de Darío (2026-11-16).**
+> **Estado: aprobado por Darío el 2026-11-16.**
 
 ## Resumen
 Portfolio profesional de Darío Jesús García Aguilera, software engineer, para
@@ -38,8 +38,8 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
 - **D6 — Capturas:** de las webs en producción, sacadas con Playwright a
   1440×900 y 390×844, guardadas en `src/assets/projects/<slug>/`. IPSO y
   Nenúfar llevan un diagrama SVG de arquitectura en lugar de captura.
-- **D7 — CV descargable:** `public/cv/dario-garcia-aguilera-cv-en.pdf`. Ver
-  pendiente P1 sobre el teléfono.
+- **D7 — CV descargable:** `public/cv/dario-garcia-aguilera-cv-en.pdf`, versión
+  **sin teléfono** (P1). La genera Claude antes de la Tarea 4.
 - **D8 — SEO:** `site: 'https://portfolio-dario.pages.dev'`, canonical,
   hreflang (en, es, x-default), Open Graph con imagen 1200×630, JSON-LD
   `Person`, `@astrojs/sitemap`, `robots.txt`.
@@ -51,17 +51,15 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
   Best Practices y SEO (medido a mano en la Tarea 8).
 
 ## Pendientes de Darío
-- **P1:** el PDF actual del CV incluye el teléfono. ¿Se publica tal cual o
-  generamos una versión sin teléfono para la web?
-- **P2:** revisar y aprobar los textos de `docs/contenido.md`, sobre todo el
-  estado y la descripción de IPSO y Nenúfar.
+- **P1 (resuelto 2026-11-16):** el CV de la web va sin teléfono.
+- **P2 (resuelto 2026-11-16):** textos de `docs/contenido.md` aprobados tal cual.
 - **P3:** foto de perfil (opcional). Sin ella, el hero usa iniciales/monograma.
-- **P4:** cuando la v1 esté lista, decidir si el repo pasa de privado a público.
+- **P4:** el repo pasa a público al terminar la v1 (decidido 2026-11-16).
 
 ## Tareas
 
 ### Tarea 1 — Andamiaje del proyecto
-- **Estado:** pendiente
+- **Estado:** hecha
 - **Modo:** síncrono
 - **Crítica:** no
 - **Contexto:** D1. Base sobre la que van todas las tareas.
@@ -100,7 +98,7 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
 - **Estado:** pendiente
 - **Modo:** síncrono
 - **Crítica:** no
-- **Contexto:** D3, D4, D5. Requiere P2 resuelto.
+- **Contexto:** D3, D4, D5.
 - **Archivos:** crear `src/data/contenido.ts`, `src/data/types.ts`,
   `tests/unit/contenido.test.ts`.
 - **Contrato:** tipos `Localized<T> = { en: T; es: T }`, `Experience`,
@@ -181,3 +179,4 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
 
 ## Registro
 - 2026-11-16 — Proyecto creado desde la plantilla del kit; PLAN.md en borrador.
+- 2026-11-16 — Tarea 1 hecha (Codex + Claude). Codex no tiene red: Claude instaló dependencias y Chromium. Ajustes de Claude: `overrides.vite` a ^6.4.6 (Astro usa Vite 6 y Vitest arrastraba Vite 7, rompía los tipos de `test`), `/// <reference types="vitest" />` y import JSON con `with { type: 'json' }` en el e2e (lo exige Node 26). `npm run verify` en verde con Node 26.8.2.
