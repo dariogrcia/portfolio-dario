@@ -47,7 +47,7 @@ const screenshots = (['desktop', 'mobile'] as const).flatMap((viewport) => {
       {
         (['role', 'problem', 'solution'] as const).map((field) =>
           project[field] ? (
-            <section aria-labelledby={`${field}-heading`} class="reveal">
+            <section aria-labelledby={`${field}-heading`}>
               <h2 id={`${field}-heading`} class="label text-accent">
                 {t(lang, field)}
               </h2>
@@ -58,7 +58,7 @@ const screenshots = (['desktop', 'mobile'] as const).flatMap((viewport) => {
       }
       {
         project.highlights && project.highlights[lang].length > 0 && (
-          <section aria-labelledby="highlights-heading" class="reveal">
+          <section aria-labelledby="highlights-heading">
             <h2 id="highlights-heading" class="label text-accent">
               {t(lang, 'highlights')}
             </h2>
@@ -73,7 +73,7 @@ const screenshots = (['desktop', 'mobile'] as const).flatMap((viewport) => {
     </div>
 
     <aside class="grid content-start gap-8 lg:sticky lg:top-24 lg:self-start">
-      <section aria-labelledby="stack-heading" class="card reveal p-6">
+      <section aria-labelledby="stack-heading" class="card p-6">
         <h2 id="stack-heading" class="label text-muted">
           {t(lang, 'technologyStack')}
         </h2>
