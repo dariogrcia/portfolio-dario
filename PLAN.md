@@ -139,7 +139,7 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
   en `/es/`, hay 7 tarjetas de proyecto y el enlace del CV devuelve 200.
 
 ### Tarea 5 — Páginas de caso de proyecto y capturas
-- **Estado:** en curso
+- **Estado:** hecha
 - **Modo:** background
 - **Crítica:** no
 - **Contexto:** D2, D5, D6.
@@ -156,7 +156,7 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
   responden 200 y el hreflang de cada una apunta a su equivalente.
 
 ### Tarea 6 — Diseño visual
-- **Estado:** pendiente
+- **Estado:** en curso
 - **Modo:** — (Claude, skill frontend-design)
 - **Crítica:** no
 - **Contexto:** CLAUDE.md. Identidad visual, tipografía, color, modo oscuro,
@@ -197,3 +197,5 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
 - 2026-11-16 — Casos ampliados (rol, problema, solución) aprobados por Darío e integrados por Claude en `docs/contenido.md` y `src/data/contenido.ts`. Corregido: JM Asesores está en Netlify. CV sin teléfono copiado a `public/cv/`.
 - 2026-11-16 — Tarea 4 implementada (Codex): siete secciones compartidas EN/ES, tarjetas de proyecto, navegación por anclas y descarga del CV. Etiquetas de interfaz en `src/i18n/ui.ts`; datos sin cambios. Actualizados los smoke tests del placeholder y añadidos ocho e2e (secciones/anclas, tarjetas, contenido/contacto y CV en ambos idiomas). Lint, typecheck, 53 unitarios y build correctos; persiste el hint previo de API obsoleta en `eslint.config.js`. Playwright enumera 11 tests; ejecución pendiente de Claude, sin abrir puertos. Sin commit.
 - 2026-11-16 — Tarea 4 hecha (Codex). Claude cambió el `<title>` provisional por «Darío García Aguilera — Software Engineer / Ingeniero de software». `verify` en verde: 53 unit + 11 e2e.
+- 2026-11-16 — Tarea 5 implementada (Codex): 14 casos EN/ES con campos opcionales (D11), enlaces equivalentes y regreso al ancla de proyectos; galería con `astro:assets` e `import.meta.glob`, sin exigir capturas existentes; diagramas SVG de IPSO y Nenúfar con title/desc y etiquetas bilingües en `src/i18n/ui.ts`, basados en el contenido aprobado. Script manual `npm run screenshots` (`node scripts/screenshots.ts`) para las cuatro webs públicas con `media: screenshots`, incluida la plantilla: escritorio 1440×900 y móvil 390×844. Sin capturas de uPathWay/Solera/GMV, sin dependencias nuevas ni commit. Lint, typecheck (solo hint previo de `eslint.config.js`), 73 tests unitarios y build de 16 páginas correctos. Playwright enumera 25 e2e (14 nuevos); no se ejecutaron ni se abrieron puertos. Claude debe ejecutar `npm run screenshots`, revisar las ocho imágenes en `src/assets/projects/<slug>/{desktop,mobile}.png` y ejecutar `npm run verify` con ellas antes de marcar la tarea hecha.
+- 2026-11-16 — Tarea 5 hecha (Codex; capturas de Claude). La URL de la plantilla de clínica está tras Cloudflare Access (login): se quita del contenido y sus capturas salen de `npx vite dev` en `~/peace-space-site`. Fallo visto en la plantilla: en móvil el botón «Reservar» de la cabecera se sale por la derecha. `verify` en verde: 73 unit + 25 e2e.

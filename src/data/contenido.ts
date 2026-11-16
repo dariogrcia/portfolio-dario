@@ -335,7 +335,6 @@ export const projects: Project[] = [
       'Resend',
       'Cloudflare Workers',
     ],
-    url: 'https://dariogrcia-peace-space-site.dariojesusgarcia6.workers.dev',
     media: 'screenshots',
   },
   {
