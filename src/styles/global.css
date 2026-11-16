@@ -339,3 +339,233 @@
     }
   }
 }
+
+/*
+ * Motion. Scroll-driven animations only run where the browser supports them
+ * and the visitor has not asked for reduced motion; everywhere else the page
+ * renders in its final, static state.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  /* Hero entrance on load, staggered. */
+  .intro > * {
+    animation: rise-in 700ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+
+  .intro > :nth-child(2) {
+    animation-delay: 80ms;
+  }
+
+  .intro > :nth-child(3) {
+    animation-delay: 180ms;
+  }
+
+  .intro > :nth-child(4) {
+    animation-delay: 260ms;
+  }
+
+  .intro > :nth-child(5) {
+    animation-delay: 320ms;
+  }
+
+  .intro > :nth-child(6) {
+    animation-delay: 380ms;
+  }
+
+  @supports (animation-timeline: view()) {
+    /* Reading progress along the bottom edge of the header. */
+    .scroll-progress {
+      display: block;
+      animation: grow-x linear both;
+      animation-timeline: scroll(root);
+    }
+
+    /* Header gains a shadow once the page has scrolled a little. */
+    .site-header {
+      animation: header-lift linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 160px;
+    }
+
+    /* Hero: the grid drifts slower than the text, which fades as it leaves. */
+    .hero {
+      view-timeline-name: --hero;
+    }
+
+    .hero::before {
+      animation: drift linear both;
+      animation-timeline: --hero;
+      animation-range: exit 0% exit 100%;
+    }
+
+    .hero-content {
+      animation: hero-out linear both;
+      animation-timeline: --hero;
+      animation-range: exit 10% exit 90%;
+    }
+
+    /* Generic reveal as an element enters the viewport. */
+    .reveal {
+      animation: rise-in linear both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 28%;
+    }
+
+    /* Two-column grids: the right-hand item lands a beat later. */
+    .stagger > li:nth-child(even) .reveal,
+    .stagger > :nth-child(even).reveal {
+      animation-range: entry 15% cover 38%;
+    }
+
+    /* Experience: the rule draws itself and each dot lights up. */
+    .timeline {
+      view-timeline-name: --timeline;
+    }
+
+    .timeline::before {
+      transform-origin: top;
+      animation: grow-y linear both;
+      animation-timeline: --timeline;
+      animation-range: entry 40% cover 70%;
+    }
+
+    .timeline > li {
+      view-timeline-name: --role;
+    }
+
+    .timeline > li::before {
+      animation: light-dot linear both;
+      animation-timeline: --role;
+      animation-range: entry 60% cover 35%;
+    }
+
+    /* AI panel: the rings turn slowly as the panel crosses the screen. */
+    .panel {
+      view-timeline-name: --panel;
+    }
+
+    .panel::after {
+      animation: turn linear both;
+      animation-timeline: --panel;
+    }
+
+    /* Closing email grows into place. */
+    .email-in {
+      animation: zoom-in linear both;
+      animation-timeline: view();
+    }
+
+    /*
+     * The page ends right after the contact block, so it can never scroll far
+     * enough to reach a cover-based range: finish as soon as it fully enters.
+     */
+    #contact .reveal,
+    #contact .email-in {
+      animation-range: entry 0% entry 100%;
+    }
+
+    /* Case study gallery: desktop slides in from the left, mobile from the right. */
+    .gallery .desktop {
+      animation: from-left linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 35%;
+    }
+
+    .gallery .mobile {
+      animation: from-right linear both;
+      animation-timeline: view();
+      animation-range: entry 10% cover 40%;
+    }
+  }
+}
+
+.scroll-progress {
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--accent);
+  transform-origin: left;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+
+@keyframes grow-x {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes grow-y {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes header-lift {
+  to {
+    box-shadow: 0 10px 30px -18px rgb(0 0 0 / 0.35);
+  }
+}
+
+@keyframes drift {
+  to {
+    transform: translateY(140px);
+  }
+}
+
+@keyframes hero-out {
+  to {
+    opacity: 0.1;
+    transform: translateY(-48px) scale(0.98);
+  }
+}
+
+@keyframes light-dot {
+  from {
+    transform: scale(0.4);
+    border-color: var(--line);
+  }
+
+  to {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+}
+
+@keyframes turn {
+  from {
+    transform: rotate(-35deg);
+  }
+
+  to {
+    transform: rotate(55deg);
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+}
+
+@keyframes from-left {
+  from {
+    opacity: 0;
+    transform: translateX(-56px);
+  }
+}
+
+@keyframes from-right {
+  from {
+    opacity: 0;
+    transform: translateX(56px);
+  }
+}

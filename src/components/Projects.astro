@@ -13,13 +13,13 @@ const { lang } = Astro.props;
 
 <section id="projects" aria-labelledby="projects-heading" class="section">
   <div class="wrap section-grid">
-    <h2 id="projects-heading" class="section-title">
+    <h2 id="projects-heading" class="section-title reveal">
       {t(lang, 'projects')}
     </h2>
-    <ol class="grid gap-5 md:grid-cols-2">
+    <ol class="stagger grid gap-5 md:grid-cols-2">
       {
         projects.map((project) => (
-          <li>
+          <li class="reveal">
             <ProjectCard project={project} lang={lang} />
           </li>
         ))

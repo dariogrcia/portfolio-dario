@@ -12,11 +12,13 @@ const { lang } = Astro.props;
 
 <section id="skills" aria-labelledby="skills-heading" class="section">
   <div class="wrap section-grid">
-    <h2 id="skills-heading" class="section-title">{t(lang, 'skills')}</h2>
-    <div class="grid gap-x-10 gap-y-8 sm:grid-cols-2">
+    <h2 id="skills-heading" class="section-title reveal">
+      {t(lang, 'skills')}
+    </h2>
+    <div class="stagger grid gap-x-10 gap-y-8 sm:grid-cols-2">
       {
         skills.map((group) => (
-          <div>
+          <div class="reveal">
             <h3 class="label text-muted">{group.name}</h3>
             <ul class="chips mt-3">
               {group.items.map((item) => (
@@ -26,7 +28,7 @@ const { lang } = Astro.props;
           </div>
         ))
       }
-      <div>
+      <div class="reveal">
         <h3 class="label text-muted">{t(lang, 'languages')}</h3>
         <ul class="prose-list mt-3 grid gap-1.5 text-[0.975rem]">
           {profile.languages.map((language) => <li>{language[lang]}</li>)}

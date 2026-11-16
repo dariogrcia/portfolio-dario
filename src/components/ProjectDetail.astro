@@ -27,7 +27,7 @@ const screenshots = (['desktop', 'mobile'] as const).flatMap((viewport) => {
 ---
 
 <article aria-labelledby="project-heading" class="wrap pt-10 pb-24 sm:pt-14">
-  <header class="max-w-3xl">
+  <header class="intro max-w-3xl">
     <h1 id="project-heading" class="text-5xl sm:text-6xl">{project.name}</h1>
     <p class={`label status status-${statusTone(project)} mt-5`}>
       {project.status[lang]}
@@ -47,7 +47,7 @@ const screenshots = (['desktop', 'mobile'] as const).flatMap((viewport) => {
       {
         (['role', 'problem', 'solution'] as const).map((field) =>
           project[field] ? (
-            <section aria-labelledby={`${field}-heading`}>
+            <section aria-labelledby={`${field}-heading`} class="reveal">
               <h2 id={`${field}-heading`} class="label text-accent">
                 {t(lang, field)}
               </h2>
@@ -58,7 +58,7 @@ const screenshots = (['desktop', 'mobile'] as const).flatMap((viewport) => {
       }
       {
         project.highlights && project.highlights[lang].length > 0 && (
-          <section aria-labelledby="highlights-heading">
+          <section aria-labelledby="highlights-heading" class="reveal">
             <h2 id="highlights-heading" class="label text-accent">
               {t(lang, 'highlights')}
             </h2>
@@ -73,7 +73,7 @@ const screenshots = (['desktop', 'mobile'] as const).flatMap((viewport) => {
     </div>
 
     <aside class="grid content-start gap-8 lg:sticky lg:top-24 lg:self-start">
-      <section aria-labelledby="stack-heading" class="card p-6">
+      <section aria-labelledby="stack-heading" class="card reveal p-6">
         <h2 id="stack-heading" class="label text-muted">
           {t(lang, 'technologyStack')}
         </h2>
@@ -137,7 +137,7 @@ const screenshots = (['desktop', 'mobile'] as const).flatMap((viewport) => {
           <h2 id="diagram-heading" class="label text-accent">
             {t(lang, 'architecture')}
           </h2>
-          <div class="card mt-6 flex justify-center p-6 text-ink sm:p-10">
+          <div class="card reveal mt-6 flex justify-center p-6 text-ink sm:p-10">
             <ProjectDiagram slug={project.slug} lang={lang} />
           </div>
         </section>

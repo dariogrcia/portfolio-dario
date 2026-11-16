@@ -187,7 +187,7 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
   imágenes `public/og/og-{en,es}.png` antes de marcar la tarea hecha.
 
 ### Tarea 8 — Despliegue en Cloudflare Pages
-- **Estado:** pendiente
+- **Estado:** en curso
 - **Modo:** — (Claude + Darío)
 - **Crítica:** no
 - **Contexto:** D8. Darío conecta el repo a Cloudflare Pages desde el panel
@@ -225,3 +225,4 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
   y los dos PNG pendientes de generar. Claude debe instalar, generar/revisar OG
   y ejecutar `npm run verify`. No se marca hecha; sin commit.
 - 2026-11-16 — Tarea 7 hecha (Codex). Claude instaló `@astrojs/sitemap`, generó las OG (`npm run og`) y corrigió la única violación de axe (el logo tenía un `aria-label` distinto de su texto visible). Los tests de privacidad usan un patrón genérico de teléfono, sin dígitos reales. CV: fecha de la carrera parcheada a 2018–2025. `verify` en verde: 106 unit + 69 dist + 33 e2e.
+- 2026-11-16 — Tarea 6b (petición de Darío, Claude): efectos de scroll en CSS (`animation-timeline`), solo con `@supports` y sin `prefers-reduced-motion`. Comprobado que todo acaba al 100 % de opacidad; el bloque de contacto usa `entry 0% entry 100%` porque la página termina antes de llegar a un rango `cover`. Carrera: 2018–2025.
