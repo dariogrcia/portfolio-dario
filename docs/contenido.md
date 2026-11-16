@@ -124,7 +124,6 @@
 
 ### clinica-psiquiatria — Clínica de psiquiatría · Plantilla
 - Estado: Plantilla / Template
-- URL: https://dariogrcia-peace-space-site.dariojesusgarcia6.workers.dev
 - Stack: React, TypeScript, TanStack Router, Tailwind CSS, shadcn/ui, Supabase, Resend, Cloudflare Workers
 - Resumen EN: Reusable website template for psychiatry and mental-health clinics, ready to adapt to a new client.
 - Resumen ES: Plantilla web reutilizable para clínicas de psiquiatría y salud mental, lista para adaptar a un nuevo cliente.

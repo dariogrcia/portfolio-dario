@@ -1,0 +1,110 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import type { Project } from '../data/types';
+import type { Lang } from '../i18n/ui';
+import { localizedPath, t } from '../i18n/utils';
+import ProjectDiagram from './ProjectDiagram.astro';
+
+interface Props {
+  project: Project;
+  lang: Lang;
+}
+
+const { project, lang } = Astro.props;
+// An empty glob is valid until the manual screenshot script has been run.
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/projects/*/{desktop,mobile}.png',
+  { eager: true },
+);
+const screenshots = (['desktop', 'mobile'] as const).flatMap((viewport) => {
+  const image = images[`../assets/projects/${project.slug}/${viewport}.png`];
+  return project.media === 'screenshots' && image
+    ? [{ viewport, image: image.default }]
+    : [];
+});
+---
+
+<article aria-labelledby="project-heading">
+  <header>
+    <h1 id="project-heading">{project.name}</h1>
+    <p>{project.status[lang]}</p>
+    {project.tagline && <p>{project.tagline[lang]}</p>}
+    <p>{project.summary[lang]}</p>
+  </header>
+  {
+    (['role', 'problem', 'solution'] as const).map((field) =>
+      project[field] ? (
+        <section aria-labelledby={`${field}-heading`}>
+          <h2 id={`${field}-heading`}>{t(lang, field)}</h2>
+          <p>{project[field][lang]}</p>
+        </section>
+      ) : null,
+    )
+  }
+  {
+    project.highlights && project.highlights[lang].length > 0 && (
+      <section aria-labelledby="highlights-heading">
+        <h2 id="highlights-heading">{t(lang, 'highlights')}</h2>
+        <ul>
+          {project.highlights[lang].map((highlight) => (
+            <li>{highlight}</li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+  <section aria-labelledby="stack-heading">
+    <h2 id="stack-heading">{t(lang, 'technologyStack')}</h2>
+    <ul>
+      {project.stack.map((technology) => <li>{technology}</li>)}
+    </ul>
+  </section>
+  {
+    project.url && (
+      <p>
+        <a href={project.url}>{t(lang, 'visitWebsite')}</a>
+      </p>
+    )
+  }
+  {project.repo === 'private' && <p>{t(lang, 'privateRepository')}</p>}
+  {
+    screenshots.length > 0 && (
+      <section aria-labelledby="screenshots-heading">
+        <h2 id="screenshots-heading">{t(lang, 'screenshots')}</h2>
+        {screenshots.map(({ viewport, image }) => (
+          <figure class={viewport}>
+            <Image
+              src={image}
+              alt={`${project.name} — ${t(lang, viewport)}`}
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>{t(lang, viewport)}</figcaption>
+          </figure>
+        ))}
+      </section>
+    )
+  }
+  {
+    project.media === 'diagram' &&
+      (project.slug === 'ipso' || project.slug === 'nenufar') && (
+        <section aria-labelledby="diagram-heading">
+          <h2 id="diagram-heading">{t(lang, 'architecture')}</h2>
+          <ProjectDiagram slug={project.slug} lang={lang} />
+        </section>
+      )
+  }
+  <a href={localizedPath('/#projects', lang)}>{t(lang, 'backToProjects')}</a>
+</article>
+
+<style>
+  figure img {
+    width: 100%;
+    height: auto;
+  }
+
+  figure.mobile {
+    max-width: 390px;
+  }
+</style>
