@@ -28,9 +28,10 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
 - **D3 — Contenido:** fuente única `docs/contenido.md`; `src/data/contenido.ts`
   la refleja tipada. Un test comprueba que cada proyecto/experiencia tiene EN y
   ES y que no aparece ningún teléfono (patrón genérico español y `tel:`) en `dist/`.
-- **D4 — Proyectos v1 y su orden:** 1 IPSO, 2 Vertex Studio, 3 dracontreras.es,
-  4 JM Asesores, 5 Clínica de psiquiatría (plantilla), 6 Asistente WhatsApp
-  Nenúfar, 7 uPathWay (GMV). Estado visible en cada tarjeta: «En producción»,
+- **D4 — Proyectos v1 y su orden:** 1 IPSO Connect, 2 Vertex Studio,
+  3 dracontreras.es, 4 JM Asesores, 5 Clínica de psiquiatría (plantilla),
+  6 Asistente WhatsApp Nenúfar. (uPathWay retirado como proyecto el 2026-11-17;
+  sigue citado en la experiencia de GMV.) Estado visible en cada tarjeta: «En producción»,
   «En desarrollo», «En planificación», «Plantilla» o «Proyecto de empresa».
 - **D5 — uPathWay y Solera:** solo descripción textual de lo que hizo Darío. Sin
   capturas, sin código, sin datos internos. Los nombres de clientes de Solera
@@ -43,13 +44,20 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
 - **D8 — SEO:** `site: 'https://portfolio-dario.pages.dev'`, canonical,
   hreflang (en, es, x-default), Open Graph con imagen 1200×630, JSON-LD
   `Person`, `@astrojs/sitemap`, `robots.txt`.
-- **D9 — Seguridad:** `public/_headers` con CSP estricta (sin `unsafe-inline`
-  en scripts; hash si hay script inline), `X-Content-Type-Options`,
+- **D9 — Seguridad:** `public/_headers` con CSP estricta (`script-src 'self'`
+  desde D12, sin `unsafe-inline` ni `unsafe-eval`), `X-Content-Type-Options`,
   `Referrer-Policy`, `Permissions-Policy`.
 - **D11 — Textos ausentes (2026-11-16):** ningún campo de texto se inventa. Lo
   que no está en `docs/contenido.md` en EN y ES es opcional en los tipos y la UI
   no lo muestra. Ampliar los casos (rol, problema/solución) requiere que Darío
   apruebe el texto en `docs/contenido.md` primero.
+- **D12 — Fondo interactivo (2026-11-17):** única excepción a «JS mínimo»: un
+  módulo propio sin librerías (`src/scripts/fluidBackground.ts`) que dibuja con
+  WebGL un degradado líquido que reacciona al puntero y al scroll. Astro lo
+  sirve como archivo externo en `/_astro/`, de ahí `script-src 'self'`. Sin
+  WebGL queda el fondo CSS; con `prefers-reduced-motion`, un fotograma fijo. Un
+  test garantiza contraste AA del texto sobre todos los colores de su paleta.
+  Paleta de la web en tonos tierra (cobre/chocolate/arena) a juego.
 - **D10 — Calidad mínima:** Playwright + axe sin violaciones serias/críticas en
   las 4 plantillas de página; Lighthouse ≥ 95 en Performance, Accessibility,
   Best Practices y SEO (medido a mano en la Tarea 8).
@@ -228,3 +236,4 @@ formación y contacto. Cada proyecto tiene, además, su página de caso
 - 2026-11-16 — Tarea 6b (petición de Darío, Claude): efectos de scroll en CSS (`animation-timeline`), solo con `@supports` y sin `prefers-reduced-motion`. Comprobado que todo acaba al 100 % de opacidad; el bloque de contacto usa `entry 0% entry 100%` porque la página termina antes de llegar a un rango `cover`. Carrera: 2018–2025.
 - 2026-11-16 — Historial limpiado con `git filter-repo` (quitados restos parciales del teléfono en PLAN.md y en un test antiguo). Repo de GitHub borrado y recreado para eliminar los objetos huérfanos. Copia previa en el scratchpad de la sesión.
 - 2026-11-16 — Tarea 8 hecha (Claude). Proyecto Pages `portfolio-dario` conectado a GitHub (NODE_VERSION=22, `npm run build`, `dist`); cada push a `main` redespliega. Añadidos 404 bilingüe noindex (sin ella, Pages servía la portada con 200), favicon, `assetsInlineLimit: 0` (Vite incrustaba fuentes como data:, bloqueadas por la CSP), `connect-src 'self'` (Lighthouse lee robots.txt desde la página) y sin reveal en el texto de los casos (quedaba semitransparente al cargar). Lighthouse en producción: 99-100 en las cuatro categorías, móvil y escritorio.
+- 2026-11-17 — Tarea 6c (petición de Darío, Claude): fondo y paleta nuevos. Tras probar 9 fondos solo-CSS (ninguno convenció: poco impacto, sin interacción), degradado líquido WebGL que reacciona al puntero y al scroll (D12), en tonos tierra a partir de una referencia de Darío; tokens de toda la web pasados a cobre/chocolate/arena, favicon y OG regenerados; quitada la retícula del hero. Contenido: uPathWay fuera de proyectos (D4), IPSO → IPSO Connect, experiencia ordenada Solera → Vertex → GMV, carrera sin «B.Sc./Grado en» (EN «Computing Engineering – Information Technologies»). El PDF del CV sigue diciendo «B.Sc. Computer Engineering»: falta su fuente.

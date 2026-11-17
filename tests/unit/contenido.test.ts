@@ -74,7 +74,6 @@ describe('approved portfolio content', () => {
       'jm-asesores',
       'clinica-psiquiatria',
       'nenufar',
-      'upathway',
     ]);
     expect(new Set(slugs).size).toBe(slugs.length);
     for (const slug of slugs) {
@@ -144,10 +143,6 @@ describe('approved portfolio content', () => {
       'jm-asesores',
       'clinica-psiquiatria',
     ]);
-    const upathway = projects.find((project) => project.slug === 'upathway');
-    expect(upathway?.media).toBe('none');
-    expect(upathway).not.toHaveProperty('repo');
-    expect(upathway).not.toHaveProperty('url');
     for (const entry of experience) {
       expect(entry).not.toHaveProperty('media');
       expect(entry).not.toHaveProperty('repo');
@@ -157,8 +152,8 @@ describe('approved portfolio content', () => {
   test('preserves all experience descriptions in their original language and order', () => {
     expect(experience.map((entry) => entry.company)).toEqual([
       'Solera Holdings',
-      'GMV',
       'Vertex Studio',
+      'GMV',
     ]);
     for (const entry of experience) {
       const section = source

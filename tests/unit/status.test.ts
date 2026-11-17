@@ -12,7 +12,6 @@ test('maps every project status to its badge tone', () => {
     'jm-asesores': 'live',
     'clinica-psiquiatria': 'template',
     nenufar: 'plan',
-    upathway: 'company',
   });
 });
 

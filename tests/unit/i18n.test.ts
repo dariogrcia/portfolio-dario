@@ -109,9 +109,10 @@ describe('Base layout', () => {
       );
       expect(html).not.toContain('preview.example');
       expect(html).not.toContain('?source=cv');
-      expect(html.match(/<script\b[^>]*>/gi)).toEqual([
-        '<script type="application/ld+json">',
-      ]);
+      const scripts = html.match(/<script\b[^>]*>/gi) ?? [];
+      expect(scripts).toHaveLength(2);
+      expect(scripts[0]).toBe('<script type="application/ld+json">');
+      expect(scripts[1]).toMatch(/^<script type="module" src="[^"]+">$/);
     },
   );
 });

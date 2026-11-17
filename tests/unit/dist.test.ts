@@ -33,7 +33,7 @@ test('builds exactly the sixteen published pages', () => {
   expect(
     htmlFiles.map((file) => `/${file.replace(/index\.html$/, '')}`).sort(),
   ).toEqual([...expectedPaths].sort());
-  expect(htmlFiles).toHaveLength(16);
+  expect(htmlFiles).toHaveLength(14);
 });
 
 test('indexes all sixteen URLs, without duplicates or extra routes', () => {
@@ -94,12 +94,17 @@ describe.each(htmlFiles)('%s', (file) => {
     expect(html).not.toMatch(spanishPhonePattern);
   });
 
-  test('uses external styles and no executable JavaScript, compatible with the CSP', () => {
+  test('uses external styles and only the self-hosted background script, compatible with the CSP', () => {
     expect(html).not.toMatch(/<style\b|\sstyle\s*=/i);
     expect(html).not.toMatch(/\son[a-z]+\s*=|javascript\s*:/i);
-    expect(html.match(/<script\b[^>]*>/gi)).toEqual([
-      '<script type="application/ld+json">',
-    ]);
+    const scripts = html.match(/<script\b[^>]*>/gi) ?? [];
+    expect(scripts).toHaveLength(2);
+    expect(scripts[0]).toBe('<script type="application/ld+json">');
+    // The only executable script is an external module served from /_astro/.
+    expect(scripts[1]).toMatch(
+      /^<script type="module" src="\/_astro\/[\w.-]+\.js">$/,
+    );
+    expect(html).toMatch(/<script type="module" src="[^"]+"><\/script>/);
     const json = html.match(
       /<script type="application\/ld\+json">([^]*?)<\/script>/,
     )![1]!;
@@ -148,7 +153,7 @@ test('ships the robots sitemap declaration and strict Cloudflare headers', () =>
   expect(headers).toMatch(/^\/\*\n/);
   for (const directive of [
     "default-src 'none'",
-    "script-src 'none'",
+    "script-src 'self'",
     "style-src 'self'",
     "font-src 'self'",
     "frame-ancestors 'none'",
