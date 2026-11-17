@@ -145,8 +145,8 @@ export const projects: Project[] = [
       es: 'Cuando una máquina falla no hay nadie en el local; el cliente pierde dinero y el dueño se entera tarde.',
     },
     solution: {
-      en: 'A no-install web app opens from a QR, holds a voice conversation, runs admin actions on the machine (unlock door, retry cycle) through the IPSO Connect integration, logs every incident and emails the owner, who reviews details and transcripts in a dashboard.',
-      es: 'Una web sin instalación se abre desde un QR, mantiene una conversación por voz, ejecuta acciones de administrador sobre la máquina (desbloquear puerta, reintentar ciclo) mediante la integración con IPSO Connect, audita cada incidencia y avisa al dueño por email, que la revisa con su transcripción en un panel.',
+      en: 'A no-install web app opens from a QR, holds a voice conversation, runs admin actions on the machine (unlock door, retry cycle) through its integration with the machines, logs every incident and emails the owner, who reviews details and transcripts in a dashboard.',
+      es: 'Una web sin instalación se abre desde un QR, mantiene una conversación por voz, ejecuta acciones de administrador sobre la máquina (desbloquear puerta, reintentar ciclo) mediante su integración con las máquinas, audita cada incidencia y avisa al dueño por email, que la revisa con su transcripción en un panel.',
     },
     highlights: {
       en: [

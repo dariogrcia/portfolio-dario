@@ -72,8 +72,8 @@
 - Rol ES: Responsable de producto y desarrollador principal: alcance, arquitectura, modelo de datos y un plan de más de 60 tareas; la implementación la delego en Codex y la reviso yo contra los tests.
 - Problema EN: When a machine fails there is nobody on site; customers lose money and owners find out late.
 - Problema ES: Cuando una máquina falla no hay nadie en el local; el cliente pierde dinero y el dueño se entera tarde.
-- Solución EN: A no-install web app opens from a QR, holds a voice conversation, runs admin actions on the machine (unlock door, retry cycle) through the IPSO Connect integration, logs every incident and emails the owner, who reviews details and transcripts in a dashboard.
-- Solución ES: Una web sin instalación se abre desde un QR, mantiene una conversación por voz, ejecuta acciones de administrador sobre la máquina (desbloquear puerta, reintentar ciclo) mediante la integración con IPSO Connect, audita cada incidencia y avisa al dueño por email, que la revisa con su transcripción en un panel.
+- Solución EN: A no-install web app opens from a QR, holds a voice conversation, runs admin actions on the machine (unlock door, retry cycle) through its integration with the machines, logs every incident and emails the owner, who reviews details and transcripts in a dashboard.
+- Solución ES: Una web sin instalación se abre desde un QR, mantiene una conversación por voz, ejecuta acciones de administrador sobre la máquina (desbloquear puerta, reintentar ciclo) mediante su integración con las máquinas, audita cada incidencia y avisa al dueño por email, que la revisa con su transcripción en un panel.
 - Highlights EN: Multi-tenant data model with row-level security · Machine simulator for safe end-to-end testing · Built with a planned, test-gated Claude Code + Codex workflow
 - Highlights ES: Modelo de datos multi-cliente con seguridad a nivel de fila · Simulador de máquinas para probar de punta a punta sin riesgo · Desarrollado con un flujo planificado Claude Code + Codex donde los tests deciden
 
