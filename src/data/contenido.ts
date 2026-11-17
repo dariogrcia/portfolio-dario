@@ -72,6 +72,23 @@ export const experience: Experience[] = [
     },
   },
   {
+    company: 'Vertex Studio',
+    title: 'Freelance Web & AI Automation',
+    dates: {
+      en: 'Ongoing, part-time',
+      es: 'En curso, a tiempo parcial',
+    },
+    description: {
+      en: [
+        'Independent studio where I build websites, CRM tools and AI automations for local businesses, from requirements and design to launch and technical SEO.',
+      ],
+      es: [
+        'Estudio propio donde hago webs, herramientas CRM y automatizaciones con IA para negocios locales, desde los requisitos y el diseño hasta el lanzamiento y el SEO técnico.',
+      ],
+    },
+    url: 'https://vertexstudiolab.es',
+  },
+  {
     company: 'GMV',
     title: 'Full-Stack Developer (Robotics)',
     dates: {
@@ -108,29 +125,12 @@ export const experience: Experience[] = [
       ],
     },
   },
-  {
-    company: 'Vertex Studio',
-    title: 'Freelance Web & AI Automation',
-    dates: {
-      en: 'Ongoing, part-time',
-      es: 'En curso, a tiempo parcial',
-    },
-    description: {
-      en: [
-        'Independent studio where I build websites, CRM tools and AI automations for local businesses, from requirements and design to launch and technical SEO.',
-      ],
-      es: [
-        'Estudio propio donde hago webs, herramientas CRM y automatizaciones con IA para negocios locales, desde los requisitos y el diseño hasta el lanzamiento y el SEO técnico.',
-      ],
-    },
-    url: 'https://vertexstudiolab.es',
-  },
 ];
 
 export const projects: Project[] = [
   {
     slug: 'ipso',
-    name: 'IPSO',
+    name: 'IPSO Connect',
     status: { en: 'In development', es: 'En desarrollo' },
     summary: {
       en: 'Voice AI assistant for self-service laundromats: customers scan a QR on the machine, explain the problem out loud and the agent fixes it or escalates.',
@@ -361,30 +361,6 @@ export const projects: Project[] = [
     repo: 'private',
     media: 'diagram',
   },
-  {
-    slug: 'upathway',
-    name: 'uPathWay',
-    status: { en: 'Company project', es: 'Proyecto de empresa' },
-    summary: {
-      en: 'Drupal 10 platform for planning and managing robotic missions with real-time data. My contribution as a full-stack developer at GMV (no code or screenshots shown: proprietary).',
-      es: 'Plataforma Drupal 10 para planificar y gestionar misiones robóticas con datos en tiempo real. Mi aportación como desarrollador full-stack en GMV (sin código ni capturas: es propiedad de la empresa).',
-    },
-    role: {
-      en: 'Full-stack developer in the robotics department team.',
-      es: 'Desarrollador full-stack en el equipo del departamento de robótica.',
-    },
-    stack: [
-      'Drupal 10',
-      'PHP',
-      'JavaScript',
-      'Twig',
-      'AJAX',
-      'Leaflet',
-      'REST',
-      'Docker',
-    ],
-    media: 'none',
-  },
 ];
 
 export const skills: SkillGroup[] = [
@@ -434,8 +410,8 @@ export const skills: SkillGroup[] = [
 export const education: Education[] = [
   {
     qualification: {
-      en: 'B.Sc. Computer Engineering – Information Technologies',
-      es: 'Grado en Ingeniería Informática – Tecnologías Informáticas',
+      en: 'Computing Engineering – Information Technologies',
+      es: 'Ingeniería Informática – Tecnologías Informáticas',
     },
     institution: {
       en: 'University of Seville',

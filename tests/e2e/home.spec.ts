@@ -64,12 +64,12 @@ for (const lang of ['en', 'es'] as const) {
     await expect(page.locator('#contact')).toBeInViewport();
   });
 
-  test(`${path} renders seven ordered project cards with localized case links`, async ({
+  test(`${path} renders every project card in order with localized case links`, async ({
     page,
   }) => {
     await page.goto(path);
     const cards = page.locator('#projects').getByRole('article');
-    await expect(cards).toHaveCount(7);
+    await expect(cards).toHaveCount(projects.length);
 
     for (const [index, project] of projects.entries()) {
       const card = cards.nth(index);

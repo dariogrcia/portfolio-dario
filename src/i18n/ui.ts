@@ -85,7 +85,7 @@ export type TranslationKey = keyof (typeof ui)['en'];
 export const projectDiagrams = {
   en: {
     ipso: {
-      title: 'IPSO — Architecture (in development)',
+      title: 'IPSO Connect — Architecture (in development)',
       description:
         'A no-install web app opens from a QR, holds a voice conversation, runs admin actions on the machine (unlock door, retry cycle) through the IPSO Connect integration, logs every incident and emails the owner, who reviews details and transcripts in a dashboard.',
       nodes: [
@@ -111,7 +111,7 @@ export const projectDiagrams = {
   },
   es: {
     ipso: {
-      title: 'IPSO — Arquitectura (en desarrollo)',
+      title: 'IPSO Connect — Arquitectura (en desarrollo)',
       description:
         'Una web sin instalación se abre desde un QR, mantiene una conversación por voz, ejecuta acciones de administrador sobre la máquina (desbloquear puerta, reintentar ciclo) mediante la integración con IPSO Connect, audita cada incidencia y avisa al dueño por email, que la revisa con su transcripción en un panel.',
       nodes: [

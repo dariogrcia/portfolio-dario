@@ -13,7 +13,8 @@
 - Lenguaje: TypeScript estricto (`astro/tsconfigs/strictest`).
 - Estilos: Tailwind CSS v4 vía `@tailwindcss/vite`. Sin librerías de componentes.
 - JavaScript en cliente: el mínimo. Nada de React/Vue/islands salvo que una
-  tarea lo pida expresamente.
+  tarea lo pida expresamente. Única excepción vigente: el fondo WebGL
+  (`src/scripts/fluidBackground.ts`, decisión D12 de PLAN.md).
 - Base de datos: ninguna.
 - Tests: Vitest (unitarios/datos) y Playwright (e2e + accesibilidad con
   `@axe-core/playwright`).

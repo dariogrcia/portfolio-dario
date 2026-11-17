@@ -6,65 +6,69 @@
 /* Design tokens. Light by default, dark follows the OS setting. */
 :root {
   color-scheme: light dark;
-  --bg: #f6f5f1;
-  --surface: #ffffff;
-  --surface-2: #eeece6;
-  --ink: #131a2c;
-  --muted: #4b5468;
-  --line: #d9dbe2;
-  --accent: #3446c8;
-  --accent-soft: #e4e7fb;
+  --bg: #f7f3ee;
+  --surface: #fffdfa;
+  --surface-2: #efe6dc;
+  --ink: #2a1a12;
+  --muted: #5a463a;
+  --line: #e2d5c8;
+  --accent: #853c1d;
+  --accent-soft: #f3e1d4;
   --on-accent: #ffffff;
-  --panel: #151c32;
-  --on-panel: #e9ebf4;
-  --on-panel-muted: #b4bad0;
+  --panel: #2a1a12;
+  --on-panel: #f3ebe4;
+  --on-panel-muted: #cdbcae;
 
   --live: #116b3f;
   --live-bg: #dff3e7;
   --dev: #8a4b00;
   --dev-bg: #fbecd6;
-  --plan: #4b5468;
-  --plan-bg: #e8e9ee;
-  --template: #3446c8;
-  --template-bg: #e4e7fb;
+  --plan: #5a463a;
+  --plan-bg: #ece2d8;
+  --template: #853c1d;
+  --template-bg: #f3e1d4;
   --company: #5b3a8c;
   --company-bg: #ece4f6;
 
-  /* Aurora glows painted behind the whole page. */
-  --aurora-1: rgb(52 70 200 / 0.26);
-  --aurora-2: rgb(124 77 214 / 0.22);
-  --aurora-3: rgb(24 160 170 / 0.2);
+  /* Colour mesh painted behind the whole page. Light hues keep AA contrast. */
+  --mesh-1: rgb(227 179 148 / 0.45);
+  --mesh-2: rgb(217 169 138 / 0.4);
+  --mesh-3: rgb(240 213 191 / 0.5);
+  --mesh-4: rgb(234 217 200 / 0.45);
+  --grain: 0.14;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #0d111d;
-    --surface: #141a2a;
-    --surface-2: #1a2134;
-    --ink: #e8eaf2;
-    --muted: #a5acc2;
-    --line: #283049;
-    --accent: #9aa6ff;
-    --accent-soft: #232b4d;
-    --on-accent: #0d111d;
-    --panel: #18203a;
-    --on-panel: #e8eaf2;
-    --on-panel-muted: #b0b7cf;
+    --bg: #140d09;
+    --surface: #1f1510;
+    --surface-2: #2a1d16;
+    --ink: #f3ebe4;
+    --muted: #c4b2a4;
+    --line: #3a2a20;
+    --accent: #e8a27a;
+    --accent-soft: #3a2218;
+    --on-accent: #140d09;
+    --panel: #24170f;
+    --on-panel: #f3ebe4;
+    --on-panel-muted: #c9b8aa;
 
     --live: #7fdba6;
     --live-bg: #12301f;
     --dev: #f5be74;
     --dev-bg: #35260f;
-    --plan: #b6bccd;
-    --plan-bg: #232a3d;
-    --template: #a8b3ff;
-    --template-bg: #222a4d;
+    --plan: #c4b2a4;
+    --plan-bg: #2c2019;
+    --template: #f0b48e;
+    --template-bg: #3a2218;
     --company: #cdb3f3;
     --company-bg: #2b2140;
 
-    --aurora-1: rgb(88 104 255 / 0.24);
-    --aurora-2: rgb(150 92 240 / 0.2);
-    --aurora-3: rgb(40 170 190 / 0.12);
+    --mesh-1: rgb(120 60 32 / 0.3);
+    --mesh-2: rgb(92 46 26 / 0.3);
+    --mesh-3: rgb(74 36 20 / 0.3);
+    --mesh-4: rgb(140 72 40 / 0.18);
+    --grain: 0.18;
   }
 }
 
@@ -111,26 +115,32 @@
   }
 
   /*
-   * Aurora: two fixed layers of soft radial glows behind the content. They
-   * drift slowly when motion is allowed and stay still otherwise.
+   * Colour mesh: two fixed layers of soft radial glows behind the content,
+   * plus a static film grain on top. The glows drift only when motion is
+   * allowed.
    */
   body::before,
   body::after {
     content: '';
     position: fixed;
-    inset: -20vmax;
     z-index: -1;
     pointer-events: none;
   }
 
   body::before {
+    inset: -12vmax;
     background:
-      radial-gradient(38vmax 30vmax at 22% 18%, var(--aurora-1), transparent 70%),
-      radial-gradient(34vmax 28vmax at 82% 72%, var(--aurora-2), transparent 70%);
+      radial-gradient(48vmax 40vmax at 18% 20%, var(--mesh-1), transparent 70%),
+      radial-gradient(44vmax 38vmax at 85% 75%, var(--mesh-2), transparent 70%),
+      radial-gradient(40vmax 34vmax at 80% 18%, var(--mesh-3), transparent 70%),
+      radial-gradient(42vmax 36vmax at 25% 85%, var(--mesh-4), transparent 70%),
+      radial-gradient(30vmax 26vmax at 52% 50%, var(--mesh-2), transparent 70%);
   }
 
   body::after {
-    background: radial-gradient(30vmax 26vmax at 78% 22%, var(--aurora-3), transparent 70%);
+    inset: 0;
+    background: url('/bg/grain.svg');
+    opacity: var(--grain);
   }
 
   h1,
@@ -378,13 +388,11 @@
  * renders in its final, static state.
  */
 @media (prefers-reduced-motion: no-preference) {
-  /* Aurora drift: long, out-of-phase loops so the glows never sync up. */
+  /* Mesh drift: a slow orbit with a gentle swell, never quite repeating. */
   body::before {
-    animation: aurora-a 48s ease-in-out infinite alternate;
-  }
-
-  body::after {
-    animation: aurora-b 62s ease-in-out infinite alternate;
+    animation:
+      mesh-orbit 26s ease-in-out infinite alternate,
+      mesh-swell 17s ease-in-out infinite alternate;
   }
 
   /* Hero entrance on load, staggered. */
@@ -427,15 +435,9 @@
       animation-range: 0 160px;
     }
 
-    /* Hero: the grid drifts slower than the text, which fades as it leaves. */
+    /* Hero: the text fades as it leaves. */
     .hero {
       view-timeline-name: --hero;
-    }
-
-    .hero::before {
-      animation: drift linear both;
-      animation-timeline: --hero;
-      animation-range: exit 0% exit 100%;
     }
 
     .hero-content {
@@ -561,12 +563,6 @@
   }
 }
 
-@keyframes drift {
-  to {
-    transform: translateY(140px);
-  }
-}
-
 @keyframes hero-out {
   to {
     opacity: 0.1;
@@ -617,20 +613,43 @@
   }
 }
 
-@keyframes aurora-a {
-  from {
-    transform: translate3d(0, 0, 0) rotate(0deg);
+@keyframes mesh-orbit {
+  0% {
+    translate: 0 0;
+    rotate: 0deg;
   }
-  to {
-    transform: translate3d(8vmax, 6vmax, 0) rotate(12deg);
+  50% {
+    translate: 10vmax -6vmax;
+    rotate: 18deg;
+  }
+  100% {
+    translate: -8vmax 10vmax;
+    rotate: -12deg;
   }
 }
 
-@keyframes aurora-b {
+@keyframes mesh-swell {
   from {
-    transform: translate3d(0, 0, 0) scale(1);
+    scale: 1;
   }
   to {
-    transform: translate3d(-12vmax, 14vmax, 0) scale(1.15);
+    scale: 1.18;
   }
+}
+
+
+/* WebGL liquid gradient; fades in once the first frame is drawn. */
+.fluid-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 900ms ease;
+}
+
+.fluid-bg[data-ready] {
+  opacity: 1;
 }

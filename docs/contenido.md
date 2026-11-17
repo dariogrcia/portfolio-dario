@@ -39,6 +39,12 @@
   - Comunicación diaria en inglés con clientes y equipos australianos: reuniones técnicas, aclaración de requisitos y seguimiento.
   - QA manual y automatizado con Playwright: tests end-to-end que validan las configuraciones antes de producción.
 
+### Vertex Studio — Freelance Web & AI Automation
+- Fechas: En curso, a tiempo parcial / Ongoing, part-time
+- Web: https://vertexstudiolab.es
+- EN: Independent studio where I build websites, CRM tools and AI automations for local businesses, from requirements and design to launch and technical SEO.
+- ES: Estudio propio donde hago webs, herramientas CRM y automatizaciones con IA para negocios locales, desde los requisitos y el diseño hasta el lanzamiento y el SEO técnico.
+
 ### GMV — Full-Stack Developer (Robotics)
 - Fechas: Oct 2024 – Jun 2025
 - Lugar: Sevilla / Seville, Spain
@@ -54,15 +60,9 @@
   - Mapas Leaflet para seguir a los robots en tiempo real, con componentes Twig responsivos actualizados por AJAX.
   - Comunicación entre sistemas mediante APIs REST; entornos con YAML y Docker; trabajo en equipo con Git.
 
-### Vertex Studio — Freelance Web & AI Automation
-- Fechas: En curso, a tiempo parcial / Ongoing, part-time
-- Web: https://vertexstudiolab.es
-- EN: Independent studio where I build websites, CRM tools and AI automations for local businesses, from requirements and design to launch and technical SEO.
-- ES: Estudio propio donde hago webs, herramientas CRM y automatizaciones con IA para negocios locales, desde los requisitos y el diseño hasta el lanzamiento y el SEO técnico.
-
 ## Proyectos (orden D4)
 
-### ipso — IPSO · Asistente de voz con IA para lavanderías
+### ipso — IPSO Connect · Asistente de voz con IA para lavanderías
 - Estado: En desarrollo / In development
 - Stack: Next.js, TypeScript, Supabase (Postgres + RLS), Vercel, Vitest
 - Repo: privado
@@ -149,14 +149,6 @@
 - Solución EN: Planned: an assistant on the WhatsApp Business API that books into Google Calendar, recognises new and returning customers, lets two admins step in, and sends promotions only to customers who opted in, in line with GDPR and Meta template rules.
 - Solución ES: Previsto: un asistente sobre la API de WhatsApp Business que agenda en Google Calendar, distingue clientes nuevos y habituales, permite intervenir a dos administradores y envía promociones solo a quien lo ha aceptado, cumpliendo el RGPD y las normas de plantillas de Meta.
 
-### upathway — uPathWay · GMV (proyecto de empresa)
-- Estado: Proyecto de empresa / Company project
-- Stack: Drupal 10, PHP, JavaScript, Twig, AJAX, Leaflet, REST, Docker
-- Resumen EN: Drupal 10 platform for planning and managing robotic missions with real-time data. My contribution as a full-stack developer at GMV (no code or screenshots shown: proprietary).
-- Resumen ES: Plataforma Drupal 10 para planificar y gestionar misiones robóticas con datos en tiempo real. Mi aportación como desarrollador full-stack en GMV (sin código ni capturas: es propiedad de la empresa).
-- Rol EN: Full-stack developer in the robotics department team.
-- Rol ES: Desarrollador full-stack en el equipo del departamento de robótica.
-
 ## Cómo trabajo con IA
 - EN: I use Claude Code and Codex daily in a two-model workflow: I design and plan each change in a written plan with explicit decisions, delegate small, verifiable tasks, and review every diff against the plan. Tests, lint and build decide when something is done. Product and content decisions stay human-led.
 - ES: Uso Claude Code y Codex a diario en un flujo de dos modelos: diseño y planifico cada cambio en un plan escrito con decisiones explícitas, delego tareas pequeñas y verificables y reviso cada diff contra el plan. Los tests, el lint y el build deciden cuándo algo está terminado. Las decisiones de producto y contenido las tomo yo.
@@ -169,6 +161,6 @@
 - AI: Claude Code, Codex, prompt engineering, AI-assisted development
 
 ## Formación e idiomas
-- Grado en Ingeniería Informática – Tecnologías Informáticas, Universidad de Sevilla, 2018–2025 / B.Sc. Computer Engineering – Information Technologies, University of Seville
+- Ingeniería Informática – Tecnologías Informáticas, Universidad de Sevilla, 2018–2025 / Computing Engineering – Information Technologies, University of Seville
 - Español: nativo / Spanish: native
 - Inglés: profesional completo (Cambridge B2), uso diario con clientes australianos / English: full professional proficiency (Cambridge B2), used daily with Australian clients
